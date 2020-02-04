@@ -6,6 +6,6 @@ Trello :
 https://trello.com/b/rADyu12k/sprint-1-planning
 
 Link of ressources :
-https://docs.google.com/document/d/1A7iPbAjrdca64CzUM4vj2K4Xxt7UIdB3IUB8Uijzvzg/edit?usp=sharing
+https://drive.google.com/drive/folders/1rtNsFQgWESIfWEz4iYWmCmO3MBVPUh19?usp=sharing
 
 Git flow : master <- dev <- {feature}
