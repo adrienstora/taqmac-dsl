@@ -1,3 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    name="model" nsURI="http://www.example.org/model" nsPrefix="model"/>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http://www.example.org/model" nsPrefix="model">
+  <eClassifiers xsi:type="ecore:EClass" name="Destination">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="adresse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Itinéraire">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entreprise" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//Destination"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plagehoraire" eType="#//PlageHoraire"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modetransport" upperBound="-1"
+        eType="#//ModeTransport" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modeaffichage" upperBound="-1"
+        eType="#//ModeAffichage" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlageHoraire">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="heureDebut" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="heureFin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TypeModeTransport">
+    <eLiterals name="Tisseo"/>
+    <eLiterals name="Voiture" value="1"/>
+    <eLiterals name="Pieton" value="2"/>
+    <eLiterals name="Velo" value="3"/>
+    <eLiterals name="Bus" value="4"/>
+    <eLiterals name="Metro" value="5"/>
+    <eLiterals name="Tram" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TypeModeAffichage">
+    <eLiterals name="Texte"/>
+    <eLiterals name="Carte" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModeTransport">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//TypeModeTransport"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModeAffichage">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//TypeModeAffichage"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+</ecore:EPackage>
