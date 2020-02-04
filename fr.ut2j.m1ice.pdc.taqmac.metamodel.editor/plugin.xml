@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated itineraire -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.presentation.ItineraireModelWizardID"
+            name="%_UI_ItineraireModelWizard_label"
+            class="fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.presentation.ItineraireModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ItineraireModelFile.gif">
+         <description>%_UI_ItineraireModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated itineraire -->
+      <editor
+            id="fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.presentation.ItineraireEditorID"
+            name="%_UI_ItineraireEditor_label"
+            icon="icons/full/obj16/ItineraireModelFile.gif"
+            extensions="itineraire"
+            class="fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.presentation.ItineraireEditor"
+            contributorClass="fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.presentation.ItineraireActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

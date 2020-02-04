@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: fr.ut2j.m1ice.pdc.taqmac.dsl.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.ut2j.m1ice.pdc.taqmac.dsl.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.ut2j.m1ice.pdc.taqmac.dsl.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: fr.ut2j.m1ice.pdc.taqmac.dsl,
+ fr.ut2j.m1ice.pdc.taqmac.metamodel,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.ut2j.m1ice.pdc.taqmac.dsl.ide.contentassist.antlr.internal,
+ fr.ut2j.m1ice.pdc.taqmac.dsl.ide.contentassist.antlr
+

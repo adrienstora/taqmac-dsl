@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: fr.ut2j.m1ice.pdc.taqmac.dsl
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.ut2j.m1ice.pdc.taqmac.dsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: fr.ut2j.m1ice.pdc.taqmac.dsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: fr.ut2j.m1ice.pdc.taqmac.metamodel,
+ org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib;bundle-version="2.14.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: fr.ut2j.m1ice.pdc.taqmac.dsl.serializer,
+ fr.ut2j.m1ice.pdc.taqmac.dsl.formatting2,
+ fr.ut2j.m1ice.pdc.taqmac.dsl.parser.antlr.internal,
+ fr.ut2j.m1ice.pdc.taqmac.dsl.validation,
+ fr.ut2j.m1ice.pdc.taqmac.dsl.scoping,
+ fr.ut2j.m1ice.pdc.taqmac.dsl.parser.antlr,
+ fr.ut2j.m1ice.pdc.taqmac.dsl.services,
+ fr.ut2j.m1ice.pdc.taqmac.dsl,
+ fr.ut2j.m1ice.pdc.taqmac.dsl.generator
+Import-Package: org.apache.log4j
