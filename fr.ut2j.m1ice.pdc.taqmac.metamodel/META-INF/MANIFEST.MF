@@ -7,7 +7,7 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-10
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire,
  fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.impl,
  fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.util

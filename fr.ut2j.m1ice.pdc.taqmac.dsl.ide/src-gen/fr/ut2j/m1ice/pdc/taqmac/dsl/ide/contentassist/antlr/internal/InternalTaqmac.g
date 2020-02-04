@@ -1156,7 +1156,7 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-RULE_TYPETRANSPORT : ('Tisseo'|'Voiture'|'Pieton'|'Velo');
+RULE_TYPETRANSPORT : ('Tisseo'|'Voiture'|'Pieton'|'Velo'|'Bus'|'Metro'|'Tram');
 
 RULE_TYPEAFFICHAGE : ('Carte'|'Texte');
 

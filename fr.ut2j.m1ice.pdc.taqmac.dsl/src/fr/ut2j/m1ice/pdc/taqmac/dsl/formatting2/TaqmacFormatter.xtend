@@ -5,11 +5,25 @@ package fr.ut2j.m1ice.pdc.taqmac.dsl.formatting2
 
 import com.google.inject.Inject
 import fr.ut2j.m1ice.pdc.taqmac.dsl.services.TaqmacGrammarAccess
+import fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.Itineraire
 import org.eclipse.xtext.formatting2.AbstractFormatter2
+import org.eclipse.xtext.formatting2.IFormattableDocument
 
 class TaqmacFormatter extends AbstractFormatter2 {
 	
 	@Inject extension TaqmacGrammarAccess
+
+	def dispatch void format(Itineraire itineraire, extension IFormattableDocument document) {
+		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+		itineraire.destination.format
+		itineraire.plageHoraire.format
+		for (modeTransport : itineraire.modesTransport) {
+			modeTransport.format
+		}
+		for (modeAffichage : itineraire.modesAffichage) {
+			modeAffichage.format
+		}
+	}
 	
 	// TODO: implement for 
 }

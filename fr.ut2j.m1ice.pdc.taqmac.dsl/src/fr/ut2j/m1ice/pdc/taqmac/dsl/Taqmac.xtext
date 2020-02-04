@@ -36,7 +36,7 @@ ModeAffichage returns ModeAffichage:
 ;
 
 terminal typeTransport:
-	"Tisseo" | "Voiture" | "Pieton" | "Velo"
+	"Tisseo" | "Voiture" | "Pieton" | "Velo" | "Bus" | "Metro" | "Tram"
 ;
 
 terminal typeAffichage:

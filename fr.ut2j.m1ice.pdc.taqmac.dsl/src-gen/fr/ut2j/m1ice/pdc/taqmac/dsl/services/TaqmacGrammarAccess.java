@@ -387,7 +387,7 @@ public class TaqmacGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//terminal typeTransport:
-	//	"Tisseo" | "Voiture" | "Pieton" | "Velo";
+	//	"Tisseo" | "Voiture" | "Pieton" | "Velo" | "Bus" | "Metro" | "Tram";
 	public TerminalRule getTypeTransportRule() {
 		return tTypeTransport;
 	}

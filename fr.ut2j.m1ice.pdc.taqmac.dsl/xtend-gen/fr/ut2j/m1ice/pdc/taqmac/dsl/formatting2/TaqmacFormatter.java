@@ -5,7 +5,17 @@ package fr.ut2j.m1ice.pdc.taqmac.dsl.formatting2;
 
 import com.google.inject.Inject;
 import fr.ut2j.m1ice.pdc.taqmac.dsl.services.TaqmacGrammarAccess;
+import fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.Destination;
+import fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.Itineraire;
+import fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.ModeAffichage;
+import fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.ModeTransport;
+import fr.ut2j.m1ice.pdc.taqmac.metamodel.itineraire.PlageHoraire;
+import java.util.Arrays;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.AbstractFormatter2;
+import org.eclipse.xtext.formatting2.IFormattableDocument;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.lib.Extension;
 
 @SuppressWarnings("all")
@@ -13,4 +23,39 @@ public class TaqmacFormatter extends AbstractFormatter2 {
   @Inject
   @Extension
   private TaqmacGrammarAccess _taqmacGrammarAccess;
+  
+  protected void _format(final Itineraire itineraire, @Extension final IFormattableDocument document) {
+    document.<Destination>format(itineraire.getDestination());
+    document.<PlageHoraire>format(itineraire.getPlageHoraire());
+    EList<ModeTransport> _modesTransport = itineraire.getModesTransport();
+    for (final ModeTransport modeTransport : _modesTransport) {
+      document.<ModeTransport>format(modeTransport);
+    }
+    EList<ModeAffichage> _modesAffichage = itineraire.getModesAffichage();
+    for (final ModeAffichage modeAffichage : _modesAffichage) {
+      document.<ModeAffichage>format(modeAffichage);
+    }
+  }
+  
+  public void format(final Object itineraire, final IFormattableDocument document) {
+    if (itineraire instanceof XtextResource) {
+      _format((XtextResource)itineraire, document);
+      return;
+    } else if (itineraire instanceof Itineraire) {
+      _format((Itineraire)itineraire, document);
+      return;
+    } else if (itineraire instanceof EObject) {
+      _format((EObject)itineraire, document);
+      return;
+    } else if (itineraire == null) {
+      _format((Void)null, document);
+      return;
+    } else if (itineraire != null) {
+      _format(itineraire, document);
+      return;
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(itineraire, document).toString());
+    }
+  }
 }

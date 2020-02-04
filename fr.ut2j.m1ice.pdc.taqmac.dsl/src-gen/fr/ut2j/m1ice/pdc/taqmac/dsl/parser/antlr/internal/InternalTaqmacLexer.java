@@ -216,47 +216,12 @@ public class InternalTaqmacLexer extends Lexer {
         try {
             int _type = RULE_TYPETRANSPORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalTaqmac.g:493:20: ( ( 'Tisseo' | 'Voiture' | 'Pieton' | 'Velo' ) )
-            // InternalTaqmac.g:493:22: ( 'Tisseo' | 'Voiture' | 'Pieton' | 'Velo' )
+            // InternalTaqmac.g:493:20: ( ( 'Tisseo' | 'Voiture' | 'Pieton' | 'Velo' | 'Bus' | 'Metro' | 'Tram' ) )
+            // InternalTaqmac.g:493:22: ( 'Tisseo' | 'Voiture' | 'Pieton' | 'Velo' | 'Bus' | 'Metro' | 'Tram' )
             {
-            // InternalTaqmac.g:493:22: ( 'Tisseo' | 'Voiture' | 'Pieton' | 'Velo' )
-            int alt1=4;
-            switch ( input.LA(1) ) {
-            case 'T':
-                {
-                alt1=1;
-                }
-                break;
-            case 'V':
-                {
-                int LA1_2 = input.LA(2);
-
-                if ( (LA1_2=='o') ) {
-                    alt1=2;
-                }
-                else if ( (LA1_2=='e') ) {
-                    alt1=4;
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 1, 2, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case 'P':
-                {
-                alt1=3;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("", 1, 0, input);
-
-                throw nvae;
-            }
-
+            // InternalTaqmac.g:493:22: ( 'Tisseo' | 'Voiture' | 'Pieton' | 'Velo' | 'Bus' | 'Metro' | 'Tram' )
+            int alt1=7;
+            alt1 = dfa1.predict(input);
             switch (alt1) {
                 case 1 :
                     // InternalTaqmac.g:493:23: 'Tisseo'
@@ -286,6 +251,30 @@ public class InternalTaqmacLexer extends Lexer {
                     // InternalTaqmac.g:493:51: 'Velo'
                     {
                     match("Velo"); 
+
+
+                    }
+                    break;
+                case 5 :
+                    // InternalTaqmac.g:493:58: 'Bus'
+                    {
+                    match("Bus"); 
+
+
+                    }
+                    break;
+                case 6 :
+                    // InternalTaqmac.g:493:64: 'Metro'
+                    {
+                    match("Metro"); 
+
+
+                    }
+                    break;
+                case 7 :
+                    // InternalTaqmac.g:493:72: 'Tram'
+                    {
+                    match("Tram"); 
 
 
                     }
@@ -987,84 +976,139 @@ public class InternalTaqmacLexer extends Lexer {
     }
 
 
+    protected DFA1 dfa1 = new DFA1(this);
     protected DFA14 dfa14 = new DFA14(this);
+    static final String DFA1_eotS =
+        "\12\uffff";
+    static final String DFA1_eofS =
+        "\12\uffff";
+    static final String DFA1_minS =
+        "\1\102\1\151\1\145\7\uffff";
+    static final String DFA1_maxS =
+        "\1\126\1\162\1\157\7\uffff";
+    static final String DFA1_acceptS =
+        "\3\uffff\1\3\1\5\1\6\1\1\1\7\1\2\1\4";
+    static final String DFA1_specialS =
+        "\12\uffff}>";
+    static final String[] DFA1_transitionS = {
+            "\1\4\12\uffff\1\5\2\uffff\1\3\3\uffff\1\1\1\uffff\1\2",
+            "\1\6\10\uffff\1\7",
+            "\1\11\11\uffff\1\10",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+    };
+
+    static final short[] DFA1_eot = DFA.unpackEncodedString(DFA1_eotS);
+    static final short[] DFA1_eof = DFA.unpackEncodedString(DFA1_eofS);
+    static final char[] DFA1_min = DFA.unpackEncodedStringToUnsignedChars(DFA1_minS);
+    static final char[] DFA1_max = DFA.unpackEncodedStringToUnsignedChars(DFA1_maxS);
+    static final short[] DFA1_accept = DFA.unpackEncodedString(DFA1_acceptS);
+    static final short[] DFA1_special = DFA.unpackEncodedString(DFA1_specialS);
+    static final short[][] DFA1_transition;
+
+    static {
+        int numStates = DFA1_transitionS.length;
+        DFA1_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA1_transition[i] = DFA.unpackEncodedString(DFA1_transitionS[i]);
+        }
+    }
+
+    class DFA1 extends DFA {
+
+        public DFA1(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 1;
+            this.eot = DFA1_eot;
+            this.eof = DFA1_eof;
+            this.min = DFA1_min;
+            this.max = DFA1_max;
+            this.accept = DFA1_accept;
+            this.special = DFA1_special;
+            this.transition = DFA1_transition;
+        }
+        public String getDescription() {
+            return "493:22: ( 'Tisseo' | 'Voiture' | 'Pieton' | 'Velo' | 'Bus' | 'Metro' | 'Tram' )";
+        }
+    }
     static final String DFA14_eotS =
-        "\1\uffff\2\25\1\uffff\10\25\1\23\2\uffff\3\23\2\uffff\1\25\1\uffff\1\25\1\uffff\13\25\5\uffff\6\25\1\73\14\25\1\uffff\3\25\1\113\7\25\1\123\1\25\1\125\1\25\1\uffff\1\25\1\125\5\25\1\uffff\1\113\1\uffff\1\25\1\113\3\25\1\141\1\25\1\113\3\25\1\uffff\1\146\1\25\1\150\1\151\1\uffff\1\152\3\uffff";
+        "\1\uffff\2\27\1\uffff\12\27\1\25\2\uffff\3\25\2\uffff\1\27\1\uffff\1\27\1\uffff\16\27\5\uffff\6\27\1\103\6\27\1\112\10\27\1\uffff\1\27\1\112\2\27\1\112\1\27\1\uffff\7\27\1\136\1\27\1\140\2\27\1\112\1\140\5\27\1\uffff\1\112\1\uffff\1\27\1\112\3\27\1\154\1\27\1\112\3\27\1\uffff\1\161\1\27\1\163\1\164\1\uffff\1\165\3\uffff";
     static final String DFA14_eofS =
-        "\153\uffff";
+        "\166\uffff";
     static final String DFA14_minS =
-        "\1\0\1\164\1\162\1\uffff\1\144\1\157\1\145\1\151\2\145\1\151\1\141\1\101\2\uffff\2\0\1\52\2\uffff\1\151\1\uffff\1\141\1\uffff\1\146\2\162\1\142\1\156\1\163\1\170\1\151\1\154\1\145\1\162\5\uffff\2\156\1\151\1\145\1\141\1\165\1\60\1\163\2\164\1\157\2\164\1\145\1\163\1\143\1\163\1\151\1\164\1\uffff\2\145\1\165\1\60\1\157\1\145\1\162\1\160\1\150\1\163\1\162\1\60\1\157\1\60\1\162\1\uffff\1\156\1\60\1\141\1\157\1\141\2\145\1\uffff\1\60\1\uffff\1\145\1\60\1\151\1\162\1\147\1\60\1\163\1\60\1\162\1\164\1\145\1\uffff\1\60\1\145\2\60\1\uffff\1\60\3\uffff";
+        "\1\0\1\164\1\162\1\uffff\1\144\1\157\1\145\1\151\2\145\1\151\1\165\1\145\1\141\1\101\2\uffff\2\0\1\52\2\uffff\1\151\1\uffff\1\141\1\uffff\1\146\2\162\1\142\1\156\1\163\1\141\1\170\1\151\1\154\1\145\1\163\1\164\1\162\5\uffff\2\156\1\151\1\145\1\141\1\165\1\60\1\163\1\155\2\164\1\157\1\164\1\60\1\162\1\164\1\145\1\163\1\143\1\163\1\151\1\164\1\uffff\1\145\1\60\1\145\1\165\1\60\1\157\1\uffff\1\157\1\145\1\162\1\160\1\150\1\163\1\162\1\60\1\157\1\60\1\162\1\156\2\60\1\141\1\157\1\141\2\145\1\uffff\1\60\1\uffff\1\145\1\60\1\151\1\162\1\147\1\60\1\163\1\60\1\162\1\164\1\145\1\uffff\1\60\1\145\2\60\1\uffff\1\60\3\uffff";
     static final String DFA14_maxS =
-        "\1\uffff\1\164\1\162\1\uffff\1\146\1\157\1\145\2\151\1\157\1\151\1\141\1\172\2\uffff\2\uffff\1\57\2\uffff\1\151\1\uffff\1\141\1\uffff\1\146\2\162\1\142\1\156\1\163\1\170\1\151\1\154\1\145\1\162\5\uffff\2\156\1\151\1\145\1\141\1\165\1\172\1\163\2\164\1\157\2\164\1\145\1\163\1\143\1\163\1\151\1\164\1\uffff\2\145\1\165\1\172\1\157\1\145\1\162\1\160\1\150\1\163\1\162\1\172\1\157\1\172\1\162\1\uffff\1\156\1\172\1\141\1\157\1\141\2\145\1\uffff\1\172\1\uffff\1\145\1\172\1\151\1\162\1\147\1\172\1\163\1\172\1\162\1\164\1\145\1\uffff\1\172\1\145\2\172\1\uffff\1\172\3\uffff";
+        "\1\uffff\1\164\1\162\1\uffff\1\146\1\157\1\145\1\151\1\162\1\157\1\151\1\165\1\145\1\141\1\172\2\uffff\2\uffff\1\57\2\uffff\1\151\1\uffff\1\141\1\uffff\1\146\2\162\1\142\1\156\1\163\1\141\1\170\1\151\1\154\1\145\1\163\1\164\1\162\5\uffff\2\156\1\151\1\145\1\141\1\165\1\172\1\163\1\155\2\164\1\157\1\164\1\172\1\162\1\164\1\145\1\163\1\143\1\163\1\151\1\164\1\uffff\1\145\1\172\1\145\1\165\1\172\1\157\1\uffff\1\157\1\145\1\162\1\160\1\150\1\163\1\162\1\172\1\157\1\172\1\162\1\156\2\172\1\141\1\157\1\141\2\145\1\uffff\1\172\1\uffff\1\145\1\172\1\151\1\162\1\147\1\172\1\163\1\172\1\162\1\164\1\145\1\uffff\1\172\1\145\2\172\1\uffff\1\172\3\uffff";
     static final String DFA14_acceptS =
-        "\3\uffff\1\3\11\uffff\1\13\1\14\3\uffff\1\20\1\21\1\uffff\1\13\1\uffff\1\3\13\uffff\1\14\1\15\1\16\1\17\1\20\23\uffff\1\10\17\uffff\1\11\7\uffff\1\7\1\uffff\1\12\13\uffff\1\5\4\uffff\1\6\1\uffff\1\2\1\4\1\1";
+        "\3\uffff\1\3\13\uffff\1\13\1\14\3\uffff\1\20\1\21\1\uffff\1\13\1\uffff\1\3\16\uffff\1\14\1\15\1\16\1\17\1\20\26\uffff\1\10\6\uffff\1\11\23\uffff\1\7\1\uffff\1\12\13\uffff\1\5\4\uffff\1\6\1\uffff\1\2\1\4\1\1";
     static final String DFA14_specialS =
-        "\1\0\16\uffff\1\1\1\2\132\uffff}>";
+        "\1\0\20\uffff\1\2\1\1\143\uffff}>";
     static final String[] DFA14_transitionS = {
-            "\11\23\2\22\2\23\1\22\22\23\1\22\1\23\1\17\4\23\1\20\4\23\1\3\2\23\1\21\12\16\7\23\2\15\1\13\5\15\1\1\6\15\1\12\3\15\1\10\1\15\1\11\4\15\3\23\1\14\1\15\1\23\1\4\2\15\1\6\1\15\1\7\1\15\1\5\13\15\1\2\6\15\uff85\23",
-            "\1\24",
+            "\11\25\2\24\2\25\1\24\22\25\1\24\1\25\1\21\4\25\1\22\4\25\1\3\2\25\1\23\12\20\7\25\1\17\1\13\1\15\5\17\1\1\3\17\1\14\2\17\1\12\3\17\1\10\1\17\1\11\4\17\3\25\1\16\1\17\1\25\1\4\2\17\1\6\1\17\1\7\1\17\1\5\13\17\1\2\6\17\uff85\25",
             "\1\26",
+            "\1\30",
             "",
-            "\1\31\1\uffff\1\30",
-            "\1\32",
-            "\1\33",
+            "\1\33\1\uffff\1\32",
             "\1\34",
-            "\1\36\3\uffff\1\35",
-            "\1\40\11\uffff\1\37",
-            "\1\41",
-            "\1\42",
-            "\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\1\35",
+            "\1\36",
+            "\1\41\3\uffff\1\37\10\uffff\1\40",
+            "\1\43\11\uffff\1\42",
+            "\1\44",
+            "\1\45",
+            "\1\46",
+            "\1\47",
+            "\32\27\4\uffff\1\27\1\uffff\32\27",
             "",
             "",
-            "\0\44",
-            "\0\44",
-            "\1\45\4\uffff\1\46",
+            "\0\51",
+            "\0\51",
+            "\1\52\4\uffff\1\53",
             "",
             "",
-            "\1\50",
-            "",
-            "\1\51",
-            "",
-            "\1\52",
-            "\1\53",
-            "\1\54",
             "\1\55",
+            "",
             "\1\56",
+            "",
             "\1\57",
             "\1\60",
             "\1\61",
             "\1\62",
             "\1\63",
             "\1\64",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\65",
             "\1\66",
             "\1\67",
             "\1\70",
             "\1\71",
             "\1\72",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\1\73",
             "\1\74",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\75",
             "\1\76",
             "\1\77",
             "\1\100",
             "\1\101",
             "\1\102",
-            "\1\103",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
             "\1\104",
             "\1\105",
             "\1\106",
             "\1\107",
-            "",
             "\1\110",
             "\1\111",
-            "\1\112",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\1\113",
             "\1\114",
             "\1\115",
             "\1\116",
@@ -1072,39 +1116,54 @@ public class InternalTaqmacLexer extends Lexer {
             "\1\120",
             "\1\121",
             "\1\122",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "",
+            "\1\123",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
             "\1\124",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\1\125",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
             "\1\126",
             "",
             "\1\127",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
             "\1\130",
             "\1\131",
             "\1\132",
             "\1\133",
             "\1\134",
-            "",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
-            "",
             "\1\135",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
-            "\1\136",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
             "\1\137",
-            "\1\140",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\1\141",
             "\1\142",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
             "\1\143",
             "\1\144",
             "\1\145",
-            "",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\1\146",
             "\1\147",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
             "",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "",
+            "\1\150",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\1\151",
+            "\1\152",
+            "\1\153",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\1\155",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\1\156",
+            "\1\157",
+            "\1\160",
+            "",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\1\162",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
             "",
             "",
             ""
@@ -1170,43 +1229,47 @@ public class InternalTaqmacLexer extends Lexer {
 
                         else if ( (LA14_0=='P') ) {s = 10;}
 
-                        else if ( (LA14_0=='C') ) {s = 11;}
+                        else if ( (LA14_0=='B') ) {s = 11;}
 
-                        else if ( (LA14_0=='^') ) {s = 12;}
+                        else if ( (LA14_0=='M') ) {s = 12;}
 
-                        else if ( ((LA14_0>='A' && LA14_0<='B')||(LA14_0>='D' && LA14_0<='H')||(LA14_0>='J' && LA14_0<='O')||(LA14_0>='Q' && LA14_0<='S')||LA14_0=='U'||(LA14_0>='W' && LA14_0<='Z')||LA14_0=='_'||(LA14_0>='b' && LA14_0<='c')||LA14_0=='e'||LA14_0=='g'||(LA14_0>='i' && LA14_0<='s')||(LA14_0>='u' && LA14_0<='z')) ) {s = 13;}
+                        else if ( (LA14_0=='C') ) {s = 13;}
 
-                        else if ( ((LA14_0>='0' && LA14_0<='9')) ) {s = 14;}
+                        else if ( (LA14_0=='^') ) {s = 14;}
 
-                        else if ( (LA14_0=='\"') ) {s = 15;}
+                        else if ( (LA14_0=='A'||(LA14_0>='D' && LA14_0<='H')||(LA14_0>='J' && LA14_0<='L')||(LA14_0>='N' && LA14_0<='O')||(LA14_0>='Q' && LA14_0<='S')||LA14_0=='U'||(LA14_0>='W' && LA14_0<='Z')||LA14_0=='_'||(LA14_0>='b' && LA14_0<='c')||LA14_0=='e'||LA14_0=='g'||(LA14_0>='i' && LA14_0<='s')||(LA14_0>='u' && LA14_0<='z')) ) {s = 15;}
 
-                        else if ( (LA14_0=='\'') ) {s = 16;}
+                        else if ( ((LA14_0>='0' && LA14_0<='9')) ) {s = 16;}
 
-                        else if ( (LA14_0=='/') ) {s = 17;}
+                        else if ( (LA14_0=='\"') ) {s = 17;}
 
-                        else if ( ((LA14_0>='\t' && LA14_0<='\n')||LA14_0=='\r'||LA14_0==' ') ) {s = 18;}
+                        else if ( (LA14_0=='\'') ) {s = 18;}
 
-                        else if ( ((LA14_0>='\u0000' && LA14_0<='\b')||(LA14_0>='\u000B' && LA14_0<='\f')||(LA14_0>='\u000E' && LA14_0<='\u001F')||LA14_0=='!'||(LA14_0>='#' && LA14_0<='&')||(LA14_0>='(' && LA14_0<='+')||(LA14_0>='-' && LA14_0<='.')||(LA14_0>=':' && LA14_0<='@')||(LA14_0>='[' && LA14_0<=']')||LA14_0=='`'||(LA14_0>='{' && LA14_0<='\uFFFF')) ) {s = 19;}
+                        else if ( (LA14_0=='/') ) {s = 19;}
+
+                        else if ( ((LA14_0>='\t' && LA14_0<='\n')||LA14_0=='\r'||LA14_0==' ') ) {s = 20;}
+
+                        else if ( ((LA14_0>='\u0000' && LA14_0<='\b')||(LA14_0>='\u000B' && LA14_0<='\f')||(LA14_0>='\u000E' && LA14_0<='\u001F')||LA14_0=='!'||(LA14_0>='#' && LA14_0<='&')||(LA14_0>='(' && LA14_0<='+')||(LA14_0>='-' && LA14_0<='.')||(LA14_0>=':' && LA14_0<='@')||(LA14_0>='[' && LA14_0<=']')||LA14_0=='`'||(LA14_0>='{' && LA14_0<='\uFFFF')) ) {s = 21;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA14_15 = input.LA(1);
+                        int LA14_18 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA14_15>='\u0000' && LA14_15<='\uFFFF')) ) {s = 36;}
+                        if ( ((LA14_18>='\u0000' && LA14_18<='\uFFFF')) ) {s = 41;}
 
-                        else s = 19;
+                        else s = 21;
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA14_16 = input.LA(1);
+                        int LA14_17 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA14_16>='\u0000' && LA14_16<='\uFFFF')) ) {s = 36;}
+                        if ( ((LA14_17>='\u0000' && LA14_17<='\uFFFF')) ) {s = 41;}
 
-                        else s = 19;
+                        else s = 21;
 
                         if ( s>=0 ) return s;
                         break;
