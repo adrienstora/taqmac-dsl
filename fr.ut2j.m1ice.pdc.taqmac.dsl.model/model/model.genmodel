@@ -26,22 +26,16 @@
     <genClasses ecoreClass="model.ecore#//Destination">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Destination/adresse"/>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//Itinéraire">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Itinéraire/entreprise"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Itinéraire/destination"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Itinéraire/plagehoraire"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Itinéraire/modetransport"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Itinéraire/modeaffichage"/>
+    <genClasses ecoreClass="model.ecore#//Itineraire">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Itineraire/entreprise"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Itineraire/destination"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Itineraire/plageHoraire"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Itineraire/modesTransport"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Itineraire/modesAffichage"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//PlageHoraire">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//PlageHoraire/heureDebut"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//PlageHoraire/heureFin"/>
-    </genClasses>
-    <genClasses ecoreClass="model.ecore#//ModeTransport">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModeTransport/type"/>
-    </genClasses>
-    <genClasses ecoreClass="model.ecore#//ModeAffichage">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ModeAffichage/type"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

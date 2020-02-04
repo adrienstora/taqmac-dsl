@@ -4,16 +4,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="Destination">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="adresse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Itinéraire">
+  <eClassifiers xsi:type="ecore:EClass" name="Itineraire">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="entreprise" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//Destination"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="plagehoraire" eType="#//PlageHoraire"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plageHoraire" eType="#//PlageHoraire"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modetransport" upperBound="-1"
-        eType="#//ModeTransport" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modeaffichage" upperBound="-1"
-        eType="#//ModeAffichage" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modesTransport" upperBound="-1"
+        eType="#//TypeModeTransport" defaultValueLiteral="Tisseo"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modesAffichage" upperBound="-1"
+        eType="#//TypeModeAffichage" defaultValueLiteral="Texte"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PlageHoraire">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="heureDebut" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -31,13 +31,5 @@
   <eClassifiers xsi:type="ecore:EEnum" name="TypeModeAffichage">
     <eLiterals name="Texte"/>
     <eLiterals name="Carte" value="1"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModeTransport">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//TypeModeTransport"
-        defaultValueLiteral=""/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModeAffichage">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//TypeModeAffichage"
-        defaultValueLiteral=""/>
   </eClassifiers>
 </ecore:EPackage>
