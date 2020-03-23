@@ -1,5 +1,15 @@
-- language: java
-jdk: openjdk11
+matrix:
+  include:
+    - language: node_js
+    node_js: lts/*
+    before_script:
+      - cd front
+      - npm ci
+    script:
+      npm test
+  include:
+    - language: java
+    jdk: openjdk11
 
 notifications:
   email:
