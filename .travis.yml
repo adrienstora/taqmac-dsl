@@ -10,7 +10,7 @@ matrix:
       before_script:
         - cd front
         - npm ci
-      script: npm start
+      script: npm pretest
 
 notifications:
   email:
