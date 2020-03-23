@@ -1,0 +1,18 @@
+{
+  "name": "taqmac",
+  "version": "1.0.0",
+  "description": "Find your the best way to reach your goals",
+  "main": "index.js",
+  "dependencies": {
+    "material-icons": "^0.3.1",
+    "tailwindcss": "^1.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local": "http-server . -p 8000",
+    "tailwind" : "npx tailwind build styles.css -o output.css"
+  },
+  "author": "TaqMac Studio",
+  "license": "ISC"
+}
