@@ -1,5 +1,6 @@
-language: java
-jdk:
- - openjdk11
-before_install:
- - mvn install
+matrix:
+  include:
+    - language: java
+      jdk: openjdk11
+      before_install:
+      - mvn install
