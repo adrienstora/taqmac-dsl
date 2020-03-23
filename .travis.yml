@@ -1,3 +1,19 @@
-language: node_js
-node_js:
-  - lts/*
+matrix:
+  include:
+    - language: java
+      jdk: openjdk11
+      before_install:
+      - mvn install
+
+    - language: node_js
+      node_js: lts/*
+      before_script:
+        - cd front
+        - npm ci
+      script: npm start
+
+notifications:
+  email:
+    - adrien.stora@gmail.com
+    - corentin.grandchamps@gmail.com
+    - ancelin.glories@gmail.com
