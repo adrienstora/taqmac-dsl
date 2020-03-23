@@ -1,18 +1,21 @@
-function doHttpRequest (action, url, params, onResponseReturn) {
-    
-    params = (params == null || params == undefined ? "" : params);
+// eslint-disable-next-line no-unused-vars
+function doHttpRequest(action, url, params, onResponseReturn) {
 
-    var httpRequest = new XMLHttpRequest();
+  params = (params === null || params === undefined ? '' : params);
 
-    if (!httpRequest) {
-      alert('Abandon :( Impossible de créer une instance de XMLHTTP');
-      return false;
-    }
-    httpRequest.onreadystatechange = callback;
-    httpRequest.open(action, url + params);
-    httpRequest.send();
+  // eslint-disable-next-line no-undef
+  var httpRequest = new XMLHttpRequest();
 
-    function callback() {
-        onResponseReturn(httpRequest);
-    }
+  if (!httpRequest) {
+    // eslint-disable-next-line no-undef
+    alert('Abandon :( Impossible de créer une instance de XMLHTTP');
+    return false;
+  }
+  httpRequest.onreadystatechange = callback;
+  httpRequest.open(action, url + params);
+  httpRequest.send();
+
+  function callback() {
+    onResponseReturn(httpRequest);
+  }
 }
