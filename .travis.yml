@@ -4,3 +4,9 @@ matrix:
       jdk: openjdk11
       before_install:
       - mvn install
+
+    - langage: node_js
+      node_js: lts/*
+      before_script:
+        - npm ci
+      script: npm test
