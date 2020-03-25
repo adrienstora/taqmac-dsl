@@ -12,6 +12,7 @@
     "eslint-config-strongloop": "^2.1.0"
   },
   "scripts": {
+    "start": "node js/index.js",
     "eslintfix": "eslint --fix .",
     "pretest": "eslint --ignore-path .gitignore .",
     "test": "echo \"Error: no test specified\" && exit 1",
