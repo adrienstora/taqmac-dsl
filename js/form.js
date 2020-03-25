@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
-function showForm() {
+exports.showForm = function() {
 
   var input = document.getElementById('formInput');
 
