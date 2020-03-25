@@ -4,7 +4,7 @@ matrix:
       node_js: lts/*
       before_script:
       - npm ci
-      script: npm run pretest
+      script: npm test
 
     - language: java
       jdk: openjdk11
