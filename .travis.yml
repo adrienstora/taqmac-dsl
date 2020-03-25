@@ -1,16 +1,15 @@
 matrix:
   include:
+    - language: node_js
+      node_js: lts/*
+      before_script:
+      - npm ci
+      script: npm run pretest
+
     - language: java
       jdk: openjdk11
       before_install:
       - mvn install
-
-    - language: node_js
-      node_js: lts/*
-      before_script:
-        - cd front
-        - npm ci
-      script: npm start
 
 notifications:
   email:
