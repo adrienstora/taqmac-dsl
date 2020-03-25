@@ -3,13 +3,13 @@ matrix:
     - language: node_js
       node_js: lts/*
       before_script:
-        - cd front
-        - npm ci
+      - npm ci
       script: npm run pretest
 
     - language: java
       jdk: openjdk11
       before_install:
+      - cd back
       - mvn install
 
 notifications:
