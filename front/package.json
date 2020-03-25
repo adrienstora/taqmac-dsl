@@ -4,7 +4,10 @@
   "description": "Find your the best way to reach your goals",
   "main": "index.js",
   "dependencies": {
+    "chai": "^4.2.0",
     "material-icons": "^0.3.1",
+    "mocha": "^7.1.1",
+    "request": "^2.88.2",
     "tailwindcss": "^1.1.4"
   },
   "devDependencies": {
@@ -14,13 +17,13 @@
   "scripts": {
     "eslintfix": "eslint --fix .",
     "pretest": "eslint --ignore-path .gitignore .",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --reporter spec",
     "local": "http-server . -p 8000",
     "tailwind": "npx tailwind build styles.css -o output.css"
   },
   "author": "TaqMac Studio",
   "license": "ISC",
-  "eslintConfig" : {
+  "eslintConfig": {
     "extends": "eslint:recommended"
   }
 }
