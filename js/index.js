@@ -1,2 +1,5 @@
 // eslint-disable-next-line no-undef
-showForm();
+
+var form = require("./form.js");
+
+form.showForm();

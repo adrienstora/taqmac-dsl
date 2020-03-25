@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+
 function showForm() {
 
   var input = document.getElementById('formInput');

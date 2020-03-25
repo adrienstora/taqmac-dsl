@@ -21,7 +21,7 @@
   },
   "author": "TaqMac Studio",
   "license": "ISC",
-  "eslintConfig" : {
+  "eslintConfig": {
     "extends": "eslint:recommended"
   }
 }
