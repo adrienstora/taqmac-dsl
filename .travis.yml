@@ -9,7 +9,6 @@ matrix:
     - language: java
       jdk: openjdk11
       before_install:
-      - cd back
       - mvn install
 
 notifications:
