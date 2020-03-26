@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 var expect  = require('chai').expect;
 var request = require('request');
-request.setTimeout(20000);
 
 it('Check if the arrival is Altran', function(done) {
     request('https://taqmac.herokuapp.com/getArrival' , function(error, response, body) {
