@@ -16,5 +16,5 @@ it('Test OSM with "test" search', function(done) {
         expect(response.statusCode).to.equal(200);
         expect(test[0].display_name).to.equal("Test, Test Valley, Hampshire, South East, England, SO20 6AZ, United Kingdom");
         done();
-    })
-})
+    });
+});
