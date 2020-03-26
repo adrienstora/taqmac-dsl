@@ -146,3 +146,5 @@ function doHttpRequest(action, url, params, onResponseReturn) {
     }
 }
   
+
+showForm();
