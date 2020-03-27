@@ -49,7 +49,7 @@ public class TisseoApiParserService {
 		System.out.println(rollingStocks);
 
 		String url = getBaseURL + "/journeys.json?departurePlaceXY=" + localisationStart
-				+ "&arrivalPlaceXY=" + localisationEnd + "&displayWording=1&key=" + getKey + "&rollingStockList=";
+				+ "&arrivalPlace=" + localisationEnd + "&displayWording=1&key=" + getKey + "&rollingStockList=";
 
 		ArrayList<String> listId = new ArrayList<>();
 		for(String t : transportModeList) {
