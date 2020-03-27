@@ -8,6 +8,7 @@ function getDeparture(adress) {
   var params = adress;
   var onResponseReturn = checkResponseValidityDeparture;
   doHttpRequest(action, url, params, onResponseReturn);
+  //blabla
 }
 
 function getArrival() {
