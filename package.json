@@ -1,0 +1,30 @@
+{
+  "name": "taqmac",
+  "version": "1.0.0",
+  "description": "Find your the best way to reach your goals",
+  "main": "index.js",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "material-icons": "^0.3.1",
+    "mocha": "^7.1.1",
+    "request": "^2.88.2",
+    "tailwindcss": "^1.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-strongloop": "^2.1.0"
+  },
+  "scripts": {
+    "start": "node js/index.js",
+    "eslintfix": "eslint --fix .",
+    "pretest": "eslint --ignore-path .gitignore .",
+    "test": "mocha --reporter spec",
+    "local": "http-server . -p 8000",
+    "tailwind": "npx tailwind build styles.css -o output.css"
+  },
+  "author": "TaqMac Studio",
+  "license": "ISC",
+  "eslintConfig": {
+    "extends": "eslint:recommended"
+  }
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="css/global.css" rel="stylesheet">
+        <link rel="stylesheet" href="node_modules/material-icons/iconfont/material-icons.css">
+    </head>
+    <body id='body' class='flex items-center'>
+
+      <!-- FORMULAIRE -->
+      <div id="form" class='mx-auto align-middle'>
+        <div id='formTitle'>
+          <h1>Page d'accueil du moteur de recherche de trajets optimisés TAQMAC</h1>
+        </div>
+        <div id='formForm'>
+          <div id="formInputContainer" class="flex items-center border-b border-b-2 border-teal-500 py-2">
+            <input id="formInput" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-5 leading-tight focus:outline-none" type="text" placeholder="Votre adresse" aria-label="Full name">
+            <button id="formRemoveButton" class="fade flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded focus:outline-none" type="button">
+              <i class="material-icons">close</i>
+            </button>
+            <button id="formSendButton" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded focus:outline-none" type="button">
+              <i class="material-icons">send</i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROUTES TEXTUELLES -->
+      <div id="route">
+          <div id="routeText">
+            <p id="routeTextVal"></p>
+          </div>
+      </div> 
+
+      <!-- MAPS -->
+      <div id="map">
+        <div id="loader" class="loader"></div>
+        <div id="basicMap"></div>
+      </div>          
+      
+      <!-- SCRIPTS -->
+      <script src="https://openlayers.org/api/OpenLayers.js"></script>
+      <script src="js/index.js"></script>
+    </body>
+</html>

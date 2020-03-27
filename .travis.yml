@@ -1,0 +1,18 @@
+matrix:
+  include:
+    - language: node_js
+      node_js: lts/*
+      before_script:
+      - npm ci
+      script: npm test
+
+    - language: java
+      jdk: openjdk11
+      before_install:
+      - mvn install
+
+notifications:
+  email:
+    - adrien.stora@gmail.com
+    - corentin.grandchamps@gmail.com
+    - ancelin.glories@gmail.com
