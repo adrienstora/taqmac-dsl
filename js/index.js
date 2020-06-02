@@ -26,7 +26,7 @@ function showForm() {
   
     document.getElementById('formSendButton').onclick = function() {
       var inputVal = input.value;
-      if (inputVal.trim() !== '') {
+      if (inputVal.trim() !== '' && input.length > 2) {
         //input.value = '';
         document.getElementById('formRemoveButton').classList.add('fade');
         console.log(inputVal);
