@@ -27,7 +27,7 @@ function showForm() {
     document.getElementById('formSendButton').onclick = function() {
       var inputVal = input.value;
       if (inputVal.trim() !== '') {
-        input.value = '';
+        //input.value = '';
         document.getElementById('formRemoveButton').classList.add('fade');
         console.log(inputVal);
         document.getElementById('routeTextVal').textContent = '';
