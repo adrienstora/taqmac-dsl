@@ -3,7 +3,7 @@
 function getDeparture(adress) {
 
   var action = 'GET';
-  var url = 'https://taqmac.herokuapp.com/map/search/';
+  var url = 'https://taqmac-dsl-back.herokuapp.com/map/search/';
   // var url = "https://nominatim.openstreetmap.org/search/' + adress + '?format=json";
   var params = adress;
   var onResponseReturn = checkResponseValidityDeparture;
@@ -11,10 +11,11 @@ function getDeparture(adress) {
   //blabla
 }
 
+
 function getArrival() {
 
   var action = 'GET';
-  var url = 'https://taqmac.herokuapp.com/getArrival';
+  var url = 'https://taqmac-dsl-back.herokuapp.com/getArrival';
   var params = null;
   var onResponseReturn = checkResponseValidityArrival;
   doHttpRequest(action, url, params, onResponseReturn);
