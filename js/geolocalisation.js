@@ -37,10 +37,16 @@ function init(data) {
     ), 15 // Zoom level
   );
 
-  var markers = new OpenLayers.Layer.Markers( "Markers" );
-  map.addLayer(markers);
-  
-  markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(data.lon, data.lat)));
+  var layer = new OpenLayers.layer.Vector({
+    source: new OpenLayers.source.Vector({
+        features: [
+            new OpenLayers.Feature({
+                geometry: new OpenLayers.geom.Point(OpenLayers.proj.fromLonLat([data.lon, data.lat]))
+            })
+        ]
+    })
+});
+map.addLayer(layer);
 
   document.getElementById('loader').style.display = 'none';
   document.getElementById('routeText').style.visibility = 'visible';
