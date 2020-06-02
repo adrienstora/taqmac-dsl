@@ -43,9 +43,9 @@ function showForm() {
 function getDeparture(adress) {
 
     var action = 'GET';
-    var url = 'https://taqmac-dsl-back.herokuapp.com/geocode/autocomplete/adress';
+    var url = 'https://taqmac-dsl-back.herokuapp.com/geocode/autocomplete/' + adress;
     // var url = "https://nominatim.openstreetmap.org/search/' + adress + '?format=json";
-    var params = adress;
+    var params = null;
     var onResponseReturn = checkResponseValidityDeparture;
     doHttpRequest(action, url, params, onResponseReturn);
 }
