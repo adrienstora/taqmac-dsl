@@ -11,6 +11,7 @@ function getDeparture(adress) {
   //blabla
 }
 
+
 function getArrival() {
 
   var action = 'GET';
