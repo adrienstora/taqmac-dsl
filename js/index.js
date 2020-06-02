@@ -81,7 +81,7 @@ function getDeparture(adress) {
   function checkResponseValidityDeparture(httpRequest) {
     try {
       if (httpRequest.readyState === XMLHttpRequest.DONE) {
-        onValidResponseDeparture(httpRequest);
+        onValidResponseDeparture2(httpRequest);
       }
     } catch (e) {
       console.log(e);
@@ -114,7 +114,25 @@ function getDeparture(adress) {
     }
 }
   
-  function onValidResponseArrival(httpRequest) {
+function onValidResponseDeparture2(httpRequest) {
+  if (httpRequest.status === 200) {
+    var data = JSON.parse(httpRequest.responseText);
+    var htmlContainer = document.getElementById('autocompleteList');
+    var htmlToPutIn = "<div id='list'>";
+    data.forEach(element => {
+      console.log(element);
+      htmlToPutIn += "<div class='elem' lon='" + element.lon + "' lat='" + element.lat + "'>" + element.display_name + "</div>";
+    });
+    htmlToPutIn += "</div>";
+    htmlContainer.innerHTML = htmlToPutIn;
+    htmlContainer.style.display = "block";
+
+  } else {
+    document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
+  }
+}
+
+function onValidResponseArrival(httpRequest) {
     if (httpRequest.status === 200) {
       // var data = httpRequest.responseText;
       document.getElementById('routeTextVal').innerText += '\nArrivée : "' + httpRequest.responseText + '"';
@@ -147,4 +165,28 @@ function doHttpRequest(action, url, params, onResponseReturn) {
 }
   
 
+
 showForm();
+
+document.body.addEventListener("click", (event) => {
+  console.log(event);
+  if(!event.target.closest("#autocompleteList") && document.getElementById("autocompleteList")) {
+    document.getElementById("autocompleteList").style.display = "none";
+  } else {
+    console.log(event.target);
+    var data= {
+      lon : parseFloat(event.target.getAttribute("lon")),
+      lat : parseFloat(event.target.getAttribute("lat"))
+    };
+    document.getElementById('basicMap').style.display = 'block';
+    document.getElementById("autocompleteList").style.display = "none";
+    init(data);
+  }
+});
+
+document.getElementById("formInput").addEventListener("keypress", (event) => {
+  console.log(event);
+  var input = document.getElementById('formInput');
+  getDeparture(input.value);
+  document.getElementById('formSendButton').click();
+});
