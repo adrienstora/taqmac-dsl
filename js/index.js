@@ -121,7 +121,7 @@ function onValidResponseDeparture2(httpRequest) {
     var htmlToPutIn = "<div id='list'>";
     data.forEach(function(element){
       console.log(element);
-      htmlToPutIn += "<div class='elem' lon='" + element.lon + "' lat='" + element.lat + "'>" + element.display_name + "</div>";
+      htmlToPutIn += "<div class='elem' lon='" + element.x + "' lat='" + element.y + "'>" + element.label + "</div>";
     });
     htmlToPutIn += "</div>";
     htmlContainer.innerHTML = htmlToPutIn;
