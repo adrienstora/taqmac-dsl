@@ -36,6 +36,12 @@ function init(data) {
       new OpenLayers.Projection('EPSG:900913') // en projection Mercator sphérique
     ), 15 // Zoom level
   );
+
+  var markers = new OpenLayers.Layer.Markers( "Markers" );
+  map.addLayer(markers);
+  
+  markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(data.lon, data.lat)));
+
   document.getElementById('loader').style.display = 'none';
   document.getElementById('routeText').style.visibility = 'visible';
 }
