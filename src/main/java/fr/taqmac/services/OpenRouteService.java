@@ -22,7 +22,7 @@ public class OpenRouteService {
     private ResponseEntity<String> autocomplete(@PathVariable String text) throws IOException {
 
         ResponseHttpUtils response = HTTPService.call(getBaseURL + "/geocode/autocomplete?text=" + text +
-                "&api_key=" + getKey, HTTPService.GET);
+                "&api_key=" + getKey + "&boundary.country=FR", HTTPService.GET);
         String listAutoComplete = response.getResultContent();
         System.out.println(listAutoComplete);
         JSONObject listAutoCompleteJson = new JSONObject(listAutoComplete);
