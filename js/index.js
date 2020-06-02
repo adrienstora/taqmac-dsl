@@ -119,7 +119,7 @@ function onValidResponseDeparture2(httpRequest) {
     var data = JSON.parse(httpRequest.responseText);
     var htmlContainer = document.getElementById('autocompleteList');
     var htmlToPutIn = "<div id='list'>";
-    data.forEach(element => {
+    data.forEach(function(element){
       console.log(element);
       htmlToPutIn += "<div class='elem' lon='" + element.lon + "' lat='" + element.lat + "'>" + element.display_name + "</div>";
     });
