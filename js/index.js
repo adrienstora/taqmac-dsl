@@ -168,7 +168,7 @@ function doHttpRequest(action, url, params, onResponseReturn) {
 
 showForm();
 
-document.body.addEventListener("click", (event) => {
+document.body.addEventListener("click", function(event) {
   console.log(event);
   if(!event.target.closest("#autocompleteList") && document.getElementById("autocompleteList")) {
     document.getElementById("autocompleteList").style.display = "none";
@@ -184,7 +184,7 @@ document.body.addEventListener("click", (event) => {
   }
 });
 
-document.getElementById("formInput").addEventListener("keypress", (event) => {
+document.getElementById("formInput").addEventListener("keypress", function(event) {
   console.log(event);
   var input = document.getElementById('formInput');
   getDeparture(input.value);
