@@ -54658,3 +54658,26 @@ video {
   height: 100%;
   margin: 0;
 }
+
+/* AUTOCOMPLETE */
+
+#autocompleteList {
+  background-color: #fff;
+  position: absolute;
+  top: 25vh;
+  max-height: 500px;
+  z-index: 1;
+  max-width: 600px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: none;
+}
+
+.elem {
+  padding: 2px;
+}
+
+.elem:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}
