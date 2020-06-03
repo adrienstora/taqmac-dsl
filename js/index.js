@@ -65,15 +65,26 @@ function getDeparture(adress) {
       document.getElementById('basicMap').innerHTML = '';
     }
   
+    var lonlat = new OpenLayers.LonLat(data.lon, data.lat) // Centre de la carte
+    .transform(
+      new OpenLayers.Projection('EPSG:4326'), // transformation de WGS 1984
+      new OpenLayers.Projection('EPSG:900913') // en projection Mercator sphérique
+    );
+
     var map = new OpenLayers.Map('basicMap');
     var mapnik = new OpenLayers.Layer.OSM();
     map.addLayer(mapnik);
-    map.setCenter(new OpenLayers.LonLat(data.lon, data.lat) // Centre de la carte
-      .transform(
-        new OpenLayers.Projection('EPSG:4326'), // transformation de WGS 1984
-        new OpenLayers.Projection('EPSG:900913') // en projection Mercator sphérique
-      ), 15 // Zoom level
+    map.setCenter(lonlat, 15 // Zoom level
     );
+
+    var markers = new OpenLayers.Layer.Markers( "Markers" );
+    map.addLayer(markers);
+
+    var size = new OpenLayers.Size(21,25);
+    var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+    var icon = new OpenLayers.Icon('/marker.png', size, offset);
+    markers.addMarker(new OpenLayers.Marker(lonlat,icon));
+
     document.getElementById('loader').style.display = 'none';
     document.getElementById('routeText').style.visibility = 'visible';
 }
@@ -163,7 +174,7 @@ function doHttpRequest(action, url, params, onResponseReturn) {
       onResponseReturn(httpRequest);
     }
 }
-  
+
 
 
 showForm();
