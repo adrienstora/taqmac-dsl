@@ -174,7 +174,9 @@ function mainFunction(event) {
       var inputVal = input.value;
       if (inputVal.trim() !== '' && inputVal.length > 2) {
         console.log(inputVal);
-        document.getElementById('routeTextVal').innerText = '';
+        if(document.getElementById('routeTextVal')) {
+          document.getElementById('routeTextVal').innerText = '';
+        }
         document.getElementById('loader').style.display = 'block';
         document.getElementById('basicMap').style.display = 'none';
         getDeparture(inputVal);
@@ -183,7 +185,7 @@ function mainFunction(event) {
       input.value = '';
       document.getElementById('formRemoveButton').classList.add('fade');
       document.getElementById('basicMap').style.display = 'none';
-      document.getElementById('routeText').innerText = '';
+      document.getElementById('routeTextVal').innerText = '';
     }
   } else {
     console.log(event.target);
@@ -192,7 +194,9 @@ function mainFunction(event) {
       lat : parseFloat(event.target.getAttribute("lat"))
     };
     document.getElementById('formInput').value = event.target.textContent;
-    document.getElementById('routeTextVal').innerText = '';
+    if(document.getElementById('routeTextVal')) {
+      document.getElementById('routeTextVal').innerText = '';
+    }
     document.getElementById('basicMap').style.display = 'block';
     document.getElementById("autocompleteList").style.display = "none";
     init(data);
