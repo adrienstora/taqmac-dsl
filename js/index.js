@@ -215,7 +215,7 @@ document.getElementById("formInput").addEventListener("keydown", function(event)
       getDepartureAutocomplete(input.value);
     }
   }
-  var input = document.getElementById('formInput');
+  input = document.getElementById('formInput');
   if (input.value !== '') {
     document.getElementById('formRemoveButton').classList.remove('fade');
   } else {
