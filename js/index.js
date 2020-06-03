@@ -65,25 +65,38 @@ function getDeparture(adress) {
       document.getElementById('basicMap').innerHTML = '';
     }
   
-    var lonlat = new OpenLayers.LonLat(data.lon, data.lat) // Centre de la carte
-    .transform(
-      new OpenLayers.Projection('EPSG:4326'), // transformation de WGS 1984
-      new OpenLayers.Projection('EPSG:900913') // en projection Mercator sphérique
-    );
+    var map = new ol.Map({
+      target: 'basicMap',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([data.lon, data.lat]),
+        zoom: 15
+      })
+    });
 
-    var map = new OpenLayers.Map('basicMap');
-    var mapnik = new OpenLayers.Layer.OSM();
-    map.addLayer(mapnik);
-    map.setCenter(lonlat, 15 // Zoom level
-    );
-
-    var markers = new OpenLayers.Layer.Markers( "Markers" );
-    map.addLayer(markers);
-
-    var size = new OpenLayers.Size(21,25);
-    var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-    var icon = new OpenLayers.Icon('/marker.png', size, offset);
-    markers.addMarker(new OpenLayers.Marker(lonlat,icon));
+    var layer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+          features: [
+              new ol.Feature({
+                  geometry: new ol.geom.Point(ol.proj.fromLonLat([data.lon, data.lat]))
+              })
+          ]
+      }),
+      style: new ol.style.Style({
+        image: new ol.style.Icon({
+          anchor: [0.5, 45],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
+          src: './marker.png',
+          scale: 0.3
+        })
+      })
+  });
+  map.addLayer(layer);
 
     document.getElementById('loader').style.display = 'none';
     document.getElementById('routeText').style.visibility = 'visible';
