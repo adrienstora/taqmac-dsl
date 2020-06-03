@@ -26,6 +26,7 @@ exports.showForm = function() {
 
   document.getElementById('formSendButton').onclick = function() {
     var inputVal = input.value;
+	var transportList;
     if (inputVal.trim() !== '') {
       input.value = '';
       document.getElementById('formRemoveButton').classList.add('fade');

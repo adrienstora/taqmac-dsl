@@ -7,11 +7,11 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import itineraire.Itineraire
-import itineraire.ModeTransport
 import org.eclipse.emf.common.util.EList
-import itineraire.ModeAffichage
-import itineraire.PlageHoraire
+import fr.ut2j.m1ice.pdc.taqmac.itineraire.Itineraire
+import fr.ut2j.m1ice.pdc.taqmac.itineraire.ModeAffichage
+import fr.ut2j.m1ice.pdc.taqmac.itineraire.PlageHoraire
+import fr.ut2j.m1ice.pdc.taqmac.itineraire.ModeTransport
 
 /**
  * Generates code from your model files on save.
@@ -44,12 +44,12 @@ class TaqmacGenerator extends AbstractGenerator {
 		function setCheckboxList(){
 			«for (trans : list) {
 				str = "<div>";
-				str += "<label for='«trans.getType().toLowerCase()»'>«trans.getType()»</label>";
-				str += "<input type='checkbox' name='«trans.getType().toLowerCase()»' value='«trans.getType().toLowerCase()»' id='«trans.getType().toLowerCase()»'>" 	
+				str += "<label for='"+trans.getType().toLowerCase()+"'>"+trans.getType()+"</label>";
+				str += "<input type='checkbox' name='"+trans.getType().toLowerCase()+"' value='"+trans.getType().toLowerCase()+"' id='"+trans.getType().toLowerCase()+"'>"; 	
 				str += "</div>";
 				listCheckbox += str;
 			}»
- 			document.getElementById("transportationListContainer").innerHTML = '«listCheckbox»';
+ 			document.getElementById("transportationListContainer").innerHTML = "«listCheckbox»";
 		}
 		setCheckboxList();
 		'''
@@ -83,15 +83,18 @@ class TaqmacGenerator extends AbstractGenerator {
 	}
 	
 	def generateDateField(PlageHoraire plage){
-		
-		var html = "<input type='time'"+
-					"id='timeSlotImput'"+
-					"min='"+plage.debut+"'"+
-					"max='"+plage.fin+"'"+
-					 "required>";
+		var html = "<div>";
+		html += "<label for='timeSlotInput'> Veuillez saisir une heure de départ</label>";
+		html += "<input type='time' "+
+					"name='timeSlotInput' "+
+					"id='timeSlotInput' "+
+					"min='"+plage.debut+"' "+
+					"max='"+plage.fin+"' "+
+					 "required> ";
+		html += "</div>";
 		'''
 		function createTimeSlots(){	 
-			document.getElementById("timeSlotsContainer").innerHTML = '«html»';
+			document.getElementById("timeSlotsContainer").innerHTML = "«html»";
 		}
 		createTimeSlots();
 		'''

@@ -5,3 +5,16 @@
 @tailwind utilities;
 
 
+#transportationListContainer{
+	margin:10px;
+}
+
+#timeSlotsContainer {
+	margin:10px;
+}
+
+#formOptions {
+	display: flex;
+	justify-content : space-around;
+}
+
