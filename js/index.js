@@ -179,7 +179,7 @@ document.body.addEventListener("click", function(event) {
       lat : parseFloat(event.target.getAttribute("lat"))
     };
     document.getElementById('formInput').value = event.target.textContent;
-    document.getElementById('routeTextVal').innerText
+    document.getElementById('routeTextVal').innerText = '';
     document.getElementById('basicMap').style.display = 'block';
     document.getElementById("autocompleteList").style.display = "none";
     init(data);
