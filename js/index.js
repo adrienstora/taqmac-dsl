@@ -182,6 +182,8 @@ function mainFunction(event) {
     } else if(event.target.closest('#formRemoveButton')) {
       input.value = '';
       document.getElementById('formRemoveButton').classList.add('fade');
+      document.getElementById('basicMap').style.display = 'none';
+      document.getElementById('routeText').innerText = '';
     }
   } else {
     console.log(event.target);
@@ -201,16 +203,17 @@ document.body.addEventListener("click", function(event) {
   mainFunction(event);
 });
 
-document.getElementById("formInput").addEventListener("keypress", function(event) {
+document.getElementById("formInput").addEventListener("keydown", function(event) {
   console.log(event);
   var input = document.getElementById('formInput');
-  getDepartureAutocomplete(input.value);
-});
-
-document.getElementById('formInput').onkeyup = function(event) {
   if (event.keyCode === 13) {
     // Trigger the button element with a click
     document.getElementById('formSendButton').click();
+  } else {
+    if(input.value.length > 1) {
+      document.getElementById("autocompleteList").style.display = "none";
+      getDepartureAutocomplete(input.value);
+    }
   }
   var input = document.getElementById('formInput');
   if (input.value !== '') {
@@ -218,4 +221,4 @@ document.getElementById('formInput').onkeyup = function(event) {
   } else {
     document.getElementById('formRemoveButton').classList.add('fade');
   }
-};
+});
