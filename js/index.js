@@ -37,38 +37,39 @@ function getDepartureAutocomplete(adress) {
       document.getElementById('basicMap').innerHTML = '';
     }
   
-    var map = new ol.Map({
+    const iconFeature = new ol.Feature({
+      geometry: new ol.geom.Point(ol.proj.fromLonLat([data.lon,data.lat])),
+      name: 'Somewhere near Nottingham',
+    });
+
+    
+    const map = new ol.Map({
       target: 'basicMap',
       layers: [
         new ol.layer.Tile({
-          source: new ol.source.OSM()
+          source: new ol.source.OSM(),
+        }),
+        new ol.layer.Vector({
+          source: new ol.source.Vector({
+            features: [iconFeature]
+          }),
+          style: new ol.style.Style({
+            image: new ol.style.Icon({
+              anchor: [0.5, 46],
+              anchorXUnits: 'fraction',
+              anchorYUnits: 'pixels',
+              src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+            })
+          })
         })
       ],
       view: new ol.View({
-        center: ol.proj.fromLonLat([data.lon, data.lat]),
+        center: ol.proj.fromLonLat([data.lon,data.lat]),
         zoom: 15
       })
     });
+    
 
-    var layer = new ol.layer.Vector({
-      source: new ol.source.Vector({
-          features: [
-              new ol.Feature({
-                  geometry: new ol.geom.Point(ol.proj.fromLonLat([data.lon, data.lat]))
-              })
-          ]
-      }),
-      style: new ol.style.Style({
-        image: new ol.style.Icon({
-          anchor: [0.5, 45],
-          anchorXUnits: 'fraction',
-          anchorYUnits: 'fraction',
-          src: './marker.png',
-          scale: 0.3
-        })
-      })
-  });
-  map.addLayer(layer);
 
     document.getElementById('loader').style.display = 'none';
     document.getElementById('routeText').style.visibility = 'visible';
