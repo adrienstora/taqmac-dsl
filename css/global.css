@@ -54651,6 +54651,7 @@ video {
   flex: 4;
   margin: 0;
   padding: 0px 10px 10px 10px;
+  z-index: 1;
 }
 
 #basicMap {
@@ -54671,6 +54672,7 @@ video {
   padding: 5px 10px;
   border-radius: 5px;
   display: none;
+  z-index: 2;
 }
 
 .elem {
