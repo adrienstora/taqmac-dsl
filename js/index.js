@@ -30,7 +30,7 @@ function showForm() {
         //input.value = '';
         document.getElementById('formRemoveButton').classList.add('fade');
         console.log(inputVal);
-        document.getElementById('routeTextVal').textContent = '';
+        document.getElementById('routeTextVal').innerText = '';
         document.getElementById('loader').style.display = 'block';
         document.getElementById('basicMap').style.display = 'none';
         getDeparture(inputVal);
@@ -178,6 +178,8 @@ document.body.addEventListener("click", function(event) {
       lon : parseFloat(event.target.getAttribute("lon")),
       lat : parseFloat(event.target.getAttribute("lat"))
     };
+    document.getElementById('formInput').value = event.target.textContent;
+    document.getElementById('routeTextVal').innerText
     document.getElementById('basicMap').style.display = 'block';
     document.getElementById("autocompleteList").style.display = "none";
     init(data);
