@@ -5,7 +5,7 @@ var request = require('request');
 it('Check if the arrival is Altran', function(done) {
     request('https://taqmac-dsl-back.herokuapp.com/getArrival' , function(error, response, body) {
         expect(response.statusCode).to.equal(200);    
-        expect(body).to.equal('Altran');
+        expect(body).to.equal('[{"x":1.380257,"y":43.628407,"label":"17 Avenue Didier Daurat, Blagnac, France"}]');
         done();
     });
 });

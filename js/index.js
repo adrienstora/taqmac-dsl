@@ -1,55 +1,27 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-// eslint-disable-next-line no-undef
-function showForm() {
-
-    var input = document.getElementById('formInput');
-  
-    input.onkeyup = function(event) {
-      if (event.keyCode === 13) {
-        // Trigger the button element with a click
-        document.getElementById('formSendButton').click();
-      }
-  
-      if (input.value !== '') {
-        document.getElementById('formRemoveButton').classList.remove('fade');
-      } else {
-        document.getElementById('formRemoveButton').classList.add('fade');
-      }
-  
-    };
-  
-    document.getElementById('formRemoveButton').onclick = function() {
-      input.value = '';
-      document.getElementById('formRemoveButton').classList.add('fade');
-    };
-  
-    document.getElementById('formSendButton').onclick = function() {
-      var inputVal = input.value;
-      if (inputVal.trim() !== '' && input.length > 2) {
-        //input.value = '';
-        document.getElementById('formRemoveButton').classList.add('fade');
-        console.log(inputVal);
-        document.getElementById('routeTextVal').innerText = '';
-        document.getElementById('loader').style.display = 'block';
-        document.getElementById('basicMap').style.display = 'none';
-        getDeparture(inputVal);
-      }
-    };
-}
-
 /* eslint-disable no-undef */
 // eslint-disable-next-line no-unused-vars
 function getDeparture(adress) {
-
+    document.getElementById("autocompleteList").style.display = "none";
     var action = 'GET';
-    var url = 'https://taqmac-dsl-back.herokuapp.com/geocode/autocomplete/' + adress;
-    // var url = "https://nominatim.openstreetmap.org/search/' + adress + '?format=json";
+    // var url = 'https://taqmac-dsl-back.herokuapp.com/geocode/autocomplete/' + adress;
+    var url = "https://nominatim.openstreetmap.org/search/" + adress + "?format=json";
     var params = null;
     var onResponseReturn = checkResponseValidityDeparture;
     doHttpRequest(action, url, params, onResponseReturn);
 }
   
+/* eslint-disable no-undef */
+// eslint-disable-next-line no-unused-vars
+function getDepartureAutocomplete(adress) {
+
+  var action = 'GET';
+  var url = 'https://taqmac-dsl-back.herokuapp.com/geocode/autocomplete/' + adress;
+  // var url = "https://nominatim.openstreetmap.org/search/' + adress + '?format=json";
+  var params = null;
+  var onResponseReturn = checkResponseValidityDepartureAutocomplete;
+  doHttpRequest(action, url, params, onResponseReturn);
+}
+
   function getArrival() {
   
     var action = 'GET';
@@ -78,7 +50,6 @@ function getDeparture(adress) {
       name: 'Somewhere near Nottingham',
     });
 
-    
     const map = new ol.Map({
       target: 'basicMap',
       layers: [
@@ -127,13 +98,25 @@ function getDeparture(adress) {
   function checkResponseValidityDeparture(httpRequest) {
     try {
       if (httpRequest.readyState === XMLHttpRequest.DONE) {
-        onValidResponseDeparture2(httpRequest);
+        onValidResponseDeparture(httpRequest);
       }
     } catch (e) {
       console.log(e);
       document.getElementById('routeTextVal').innerText = 'Lieu non trouvé';
       document.getElementById('loader').style.display = 'none';
     }
+}
+
+function checkResponseValidityDepartureAutocomplete(httpRequest) {
+  try {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      onValidResponseDepartureAutocomplete(httpRequest);
+    }
+  } catch (e) {
+    console.log(e);
+    document.getElementById('routeTextVal').innerText = 'Lieu non trouvé';
+    document.getElementById('loader').style.display = 'none';
+  }
 }
   
   function checkResponseValidityArrival(httpRequest) {
@@ -143,6 +126,7 @@ function getDeparture(adress) {
       }
     } catch (e) {
       console.log(e);
+      document.getElementById('routeText').style.visibility = 'visible';
       document.getElementById('routeTextVal').innerText += 'Lieu non trouvé';
       document.getElementById('loader').style.display = 'none';
     }
@@ -151,29 +135,33 @@ function getDeparture(adress) {
   function onValidResponseDeparture(httpRequest) {
     if (httpRequest.status === 200) {
       var data = JSON.parse(httpRequest.responseText)[0];
+      console.log(data);
       document.getElementById('routeTextVal').innerText = 'Départ : "' + data.display_name;
       document.getElementById('basicMap').style.display = 'block';
       var dataArrival = getArrival();
       init(data, dataArrival);
     } else {
+      document.getElementById('routeText').style.visibility = 'visible';
       document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
     }
 }
   
-function onValidResponseDeparture2(httpRequest) {
+function onValidResponseDepartureAutocomplete(httpRequest) {
   if (httpRequest.status === 200) {
     var data = JSON.parse(httpRequest.responseText);
-    var htmlContainer = document.getElementById('autocompleteList');
-    var htmlToPutIn = "<div id='list'>";
-    data.forEach(function(element){
-      console.log(element);
-      htmlToPutIn += "<div class='elem' lon='" + element.x + "' lat='" + element.y + "'>" + element.label + "</div>";
-    });
-    htmlToPutIn += "</div>";
-    htmlContainer.innerHTML = htmlToPutIn;
-    htmlContainer.style.display = "block";
-
+    if(data.length > 0) {
+      var htmlContainer = document.getElementById('autocompleteList');
+      var htmlToPutIn = "<div id='list'>";
+      data.forEach(function(element){
+        console.log(element);
+        htmlToPutIn += "<div class='elem' lon='" + element.x + "' lat='" + element.y + "'>" + element.label + "</div>";
+      });
+      htmlToPutIn += "</div>";
+      htmlContainer.innerHTML = htmlToPutIn;
+      htmlContainer.style.display = "block";
+    }
   } else {
+    document.getElementById('routeText').style.visibility = 'visible';
     document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
   }
 }
@@ -181,7 +169,8 @@ function onValidResponseDeparture2(httpRequest) {
 function onValidResponseArrival(httpRequest) {
     if (httpRequest.status === 200) {
       // var data = httpRequest.responseText;
-      document.getElementById('routeTextVal').innerText += '\nArrivée : "' + httpRequest.responseText + '"';
+      var data = JSON.parse(httpRequest.responseText);
+      document.getElementById('routeTextVal').innerText += '\nArrivée : "' + data[0].label + '"';
     } else {
       document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
     }
@@ -211,13 +200,28 @@ function doHttpRequest(action, url, params, onResponseReturn) {
 }
 
 
-
-showForm();
-
-document.body.addEventListener("click", function(event) {
+function mainFunction(event) {
   console.log(event);
   if(!event.target.closest("#autocompleteList") && document.getElementById("autocompleteList")) {
     document.getElementById("autocompleteList").style.display = "none";
+    var input = document.getElementById('formInput');
+    if(event.target.closest('#formSendButton')) {
+      var inputVal = input.value;
+      if (inputVal.trim() !== '' && inputVal.length > 2) {
+        console.log(inputVal);
+        if(document.getElementById('routeTextVal')) {
+          document.getElementById('routeTextVal').innerText = '';
+        }
+        document.getElementById('loader').style.display = 'block';
+        document.getElementById('basicMap').style.display = 'none';
+        getDeparture(inputVal);
+      }
+    } else if(event.target.closest('#formRemoveButton')) {
+      input.value = '';
+      document.getElementById('formRemoveButton').classList.add('fade');
+      document.getElementById('basicMap').style.display = 'none';
+      document.getElementById('routeTextVal').innerText = '';
+    }
   } else {
     console.log(event.target);
     var data= {
@@ -225,17 +229,36 @@ document.body.addEventListener("click", function(event) {
       lat : parseFloat(event.target.getAttribute("lat"))
     };
     document.getElementById('formInput').value = event.target.textContent;
-    document.getElementById('routeTextVal').innerText = '';
+    if(document.getElementById('routeTextVal')) {
+      document.getElementById('routeTextVal').innerText = '';
+    }
     document.getElementById('basicMap').style.display = 'block';
     document.getElementById("autocompleteList").style.display = "none";
     var dataArrival = getArrival();
     init(data, dataArrival);
   }
+}
+
+document.body.addEventListener("click", function(event) {
+  mainFunction(event);
 });
 
-document.getElementById("formInput").addEventListener("keypress", function(event) {
+document.getElementById("formInput").addEventListener("keydown", function(event) {
   console.log(event);
   var input = document.getElementById('formInput');
-  getDeparture(input.value);
-  document.getElementById('formSendButton').click();
+  if (event.keyCode === 13) {
+    // Trigger the button element with a click
+    document.getElementById('formSendButton').click();
+  } else {
+    if(input.value.length > 1) {
+      document.getElementById("autocompleteList").style.display = "none";
+      getDepartureAutocomplete(input.value);
+    }
+  }
+  input = document.getElementById('formInput');
+  if (input.value !== '') {
+    document.getElementById('formRemoveButton').classList.remove('fade');
+  } else {
+    document.getElementById('formRemoveButton').classList.add('fade');
+  }
 });
