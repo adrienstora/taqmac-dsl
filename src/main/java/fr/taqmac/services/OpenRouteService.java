@@ -19,7 +19,7 @@ public class OpenRouteService {
     public static final String getKey = "5b3ce3597851110001cf6248c3e0f4ea0c98469b87828a7ec113cc29";
 
     @GetMapping(value = "/geocode/autocomplete/{text}")
-    private ResponseEntity<String> autocomplete(@PathVariable String text) throws IOException {
+    public static ResponseEntity<String> autocomplete(@PathVariable String text) throws IOException {
 
         ResponseHttpUtils response = HTTPService.call(getBaseURL + "/geocode/autocomplete?text=" + text +
                 "&api_key=" + getKey + "&boundary.country=FR", HTTPService.GET);
