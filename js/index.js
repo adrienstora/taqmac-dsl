@@ -47,6 +47,18 @@ function getDepartureAutocomplete(adress) {
       name: 'Somewhere near Nottingham',
     });
 
+
+    var vector = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        url: '/gpx.gpx',
+        format: new ol.format.GPX()
+      }),
+      style: function(feature) {
+        return style[feature.getGeometry().getType()];
+      }
+    });
+
+
     // eslint-disable-next-line no-unused-vars
     var map = new ol.Map({
       target: 'basicMap',
@@ -79,7 +91,8 @@ function getDepartureAutocomplete(adress) {
               src: 'https://openlayers.org/en/latest/examples/data/icon.png'
             })
           })
-        })
+        }),
+        vector
       ],
       view: new ol.View({
         center: ol.proj.fromLonLat([allPointsCoords.lonDeparture,allPointsCoords.latDeparture]),
