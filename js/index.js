@@ -42,7 +42,7 @@ function getDepartureAutocomplete(adress) {
       name: 'Somewhere near Nottingham',
     });
 
-    
+    // eslint-disable-next-line no-unused-vars
     var map = new ol.Map({
       target: 'basicMap',
       layers: [
