@@ -37,13 +37,13 @@ function getDepartureAutocomplete(adress) {
       document.getElementById('basicMap').innerHTML = '';
     }
   
-    const iconFeature = new ol.Feature({
+    var iconFeature = new ol.Feature({
       geometry: new ol.geom.Point(ol.proj.fromLonLat([data.lon,data.lat])),
       name: 'Somewhere near Nottingham',
     });
 
     
-    const map = new ol.Map({
+    var map = new ol.Map({
       target: 'basicMap',
       layers: [
         new ol.layer.Tile({
