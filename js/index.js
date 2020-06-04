@@ -225,9 +225,7 @@ function mainFunction(event) {
     allPointsCoords.lonDeparture = data.lon;
     allPointsCoords.latDeparture = data.lat;
     document.getElementById('formInput').value = event.target.textContent;
-    if(document.getElementById('routeTextVal')) {
-      document.getElementById('routeTextVal').innerText = '';
-    }
+    document.getElementById('routeTextVal').innerText = 'Départ : "' + event.target.textContent;
     document.getElementById('basicMap').style.display = 'block';
     document.getElementById("autocompleteList").style.display = "none";
     getArrival();
