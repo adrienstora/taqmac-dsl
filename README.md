@@ -15,5 +15,4 @@ TAQMAC is a Domain Specific Language thought for assisting webmasters in the cre
 | horaires debut ... fin ...| Opening time of the company       | Hours (String)                                                | `horaire debut "10" fin "18"`                         |
 | transport                 | Allowed transportation modes      | Tisseo \| Voiture \| Pieton \| Velo \| Bus \| Metro \| Tram   | `transport Tisseo, Voiture, Velo` |
 | affichage                 | Display mode of the page          | Carte \| Texte                                                | `affichage carte, texte`
-|
 
