@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+import static fr.taqmac.services.OpenRouteService.autocomplete;
+
 @RestController
 public class OpenStreetMapService {
 
@@ -32,8 +34,11 @@ public class OpenStreetMapService {
 
     @GetMapping(value = "/getArrival")
     private ResponseEntity<String> getArrival() throws IOException {
-        String arrival = "Altran";
-        return HTTPService.createResponse(arrival,HttpStatus.OK);
+
+        String adress = "17 Avenue Didier Daurat, Blagnac, France";
+        ResponseEntity<String> arrival = autocomplete(adress);
+        System.out.println(arrival.getBody());
+        return HTTPService.createResponse(arrival.getBody(),HttpStatus.OK);
     }
 
 
