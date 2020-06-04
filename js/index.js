@@ -59,14 +59,22 @@ function getDeparture(adress) {
     doHttpRequest(action, url, params, onResponseReturn);
 }
   
-  function init(data) {
+  function init(data, dataArrival) {
   
     if (document.getElementById('basicMap').innerHTML !== '') {
       document.getElementById('basicMap').innerHTML = '';
     }
   
-    const iconFeature = new ol.Feature({
+    const iconDeparture = new ol.Feature({
       geometry: new ol.geom.Point(ol.proj.fromLonLat([data.lon,data.lat])),
+      name: 'Somewhere near Nottingham',
+    });
+
+
+    console.log(dataArrival);
+    
+    const iconArrival = new ol.Feature({
+      geometry: new ol.geom.Point(ol.proj.fromLonLat([dataArrival.x,dataArrival.y])),
       name: 'Somewhere near Nottingham',
     });
 
@@ -79,7 +87,20 @@ function getDeparture(adress) {
         }),
         new ol.layer.Vector({
           source: new ol.source.Vector({
-            features: [iconFeature]
+            features: [iconDeparture]
+          }),
+          style: new ol.style.Style({
+            image: new ol.style.Icon({
+              anchor: [0.5, 46],
+              anchorXUnits: 'fraction',
+              anchorYUnits: 'pixels',
+              src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+            })
+          })
+        }),
+        new ol.layer.Vector({
+          source: new ol.source.Vector({
+            features: [iconArrival]
           }),
           style: new ol.style.Style({
             image: new ol.style.Icon({
@@ -132,8 +153,8 @@ function getDeparture(adress) {
       var data = JSON.parse(httpRequest.responseText)[0];
       document.getElementById('routeTextVal').innerText = 'Départ : "' + data.display_name;
       document.getElementById('basicMap').style.display = 'block';
-      getArrival();
-      init(data);
+      var dataArrival = getArrival();
+      init(data, dataArrival);
     } else {
       document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
     }
@@ -207,7 +228,8 @@ document.body.addEventListener("click", function(event) {
     document.getElementById('routeTextVal').innerText = '';
     document.getElementById('basicMap').style.display = 'block';
     document.getElementById("autocompleteList").style.display = "none";
-    init(data);
+    var dataArrival = getArrival();
+    init(data, dataArrival);
   }
 });
 
