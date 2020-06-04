@@ -31,26 +31,24 @@ function getDepartureAutocomplete(adress) {
     doHttpRequest(action, url, params, onResponseReturn);
 }
   
-  function init(data, dataArrival) {
+  function init() {
   
     if (document.getElementById('basicMap').innerHTML !== '') {
       document.getElementById('basicMap').innerHTML = '';
     }
   
-    const iconDeparture = new ol.Feature({
-      geometry: new ol.geom.Point(ol.proj.fromLonLat([data.lon,data.lat])),
+    var iconDeparture = new ol.Feature({
+      geometry: new ol.geom.Point(ol.proj.fromLonLat([allPointsCoords.lonDeparture,allPointsCoords.latDeparture])),
       name: 'Somewhere near Nottingham',
     });
-
-
-    console.log(dataArrival);
     
-    const iconArrival = new ol.Feature({
-      geometry: new ol.geom.Point(ol.proj.fromLonLat([dataArrival.x,dataArrival.y])),
+    var iconArrival = new ol.Feature({
+      geometry: new ol.geom.Point(ol.proj.fromLonLat([allPointsCoords.lonArrival,allPointsCoords.latArrival])),
       name: 'Somewhere near Nottingham',
     });
 
-    const map = new ol.Map({
+    // eslint-disable-next-line no-unused-vars
+    var map = new ol.Map({
       target: 'basicMap',
       layers: [
         new ol.layer.Tile({
@@ -84,7 +82,7 @@ function getDepartureAutocomplete(adress) {
         })
       ],
       view: new ol.View({
-        center: ol.proj.fromLonLat([data.lon,data.lat]),
+        center: ol.proj.fromLonLat([allPointsCoords.lonDeparture,allPointsCoords.latDeparture]),
         zoom: 15
       })
     });
@@ -101,7 +99,6 @@ function getDepartureAutocomplete(adress) {
         onValidResponseDeparture(httpRequest);
       }
     } catch (e) {
-      console.log(e);
       document.getElementById('routeTextVal').innerText = 'Lieu non trouvé';
       document.getElementById('loader').style.display = 'none';
     }
@@ -113,7 +110,6 @@ function checkResponseValidityDepartureAutocomplete(httpRequest) {
       onValidResponseDepartureAutocomplete(httpRequest);
     }
   } catch (e) {
-    console.log(e);
     document.getElementById('routeTextVal').innerText = 'Lieu non trouvé';
     document.getElementById('loader').style.display = 'none';
   }
@@ -125,7 +121,6 @@ function checkResponseValidityDepartureAutocomplete(httpRequest) {
         onValidResponseArrival(httpRequest);
       }
     } catch (e) {
-      console.log(e);
       document.getElementById('routeText').style.visibility = 'visible';
       document.getElementById('routeTextVal').innerText += 'Lieu non trouvé';
       document.getElementById('loader').style.display = 'none';
@@ -135,11 +130,11 @@ function checkResponseValidityDepartureAutocomplete(httpRequest) {
   function onValidResponseDeparture(httpRequest) {
     if (httpRequest.status === 200) {
       var data = JSON.parse(httpRequest.responseText)[0];
-      console.log(data);
       document.getElementById('routeTextVal').innerText = 'Départ : "' + data.display_name;
       document.getElementById('basicMap').style.display = 'block';
-      var dataArrival = getArrival();
-      init(data, dataArrival);
+      allPointsCoords.lonDeparture = data.lon;
+      allPointsCoords.latDeparture = data.lat;
+      getArrival();
     } else {
       document.getElementById('routeText').style.visibility = 'visible';
       document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
@@ -153,7 +148,6 @@ function onValidResponseDepartureAutocomplete(httpRequest) {
       var htmlContainer = document.getElementById('autocompleteList');
       var htmlToPutIn = "<div id='list'>";
       data.forEach(function(element){
-        console.log(element);
         htmlToPutIn += "<div class='elem' lon='" + element.x + "' lat='" + element.y + "'>" + element.label + "</div>";
       });
       htmlToPutIn += "</div>";
@@ -170,7 +164,10 @@ function onValidResponseArrival(httpRequest) {
     if (httpRequest.status === 200) {
       // var data = httpRequest.responseText;
       var data = JSON.parse(httpRequest.responseText);
+      allPointsCoords.lonArrival = data[0].x + '';
+      allPointsCoords.latArrival = data[0].y + '';
       document.getElementById('routeTextVal').innerText += '\nArrivée : "' + data[0].label + '"';
+      init();
     } else {
       document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
     }
@@ -201,14 +198,12 @@ function doHttpRequest(action, url, params, onResponseReturn) {
 
 
 function mainFunction(event) {
-  console.log(event);
   if(!event.target.closest("#autocompleteList") && document.getElementById("autocompleteList")) {
     document.getElementById("autocompleteList").style.display = "none";
     var input = document.getElementById('formInput');
     if(event.target.closest('#formSendButton')) {
       var inputVal = input.value;
       if (inputVal.trim() !== '' && inputVal.length > 2) {
-        console.log(inputVal);
         if(document.getElementById('routeTextVal')) {
           document.getElementById('routeTextVal').innerText = '';
         }
@@ -223,19 +218,20 @@ function mainFunction(event) {
       document.getElementById('routeTextVal').innerText = '';
     }
   } else {
-    console.log(event.target);
     var data= {
       lon : parseFloat(event.target.getAttribute("lon")),
       lat : parseFloat(event.target.getAttribute("lat"))
     };
+    allPointsCoords.lonDeparture = data.lon;
+    allPointsCoords.latDeparture = data.lat;
     document.getElementById('formInput').value = event.target.textContent;
     if(document.getElementById('routeTextVal')) {
       document.getElementById('routeTextVal').innerText = '';
     }
     document.getElementById('basicMap').style.display = 'block';
     document.getElementById("autocompleteList").style.display = "none";
-    var dataArrival = getArrival();
-    init(data, dataArrival);
+    getArrival();
+    
   }
 }
 
@@ -244,7 +240,6 @@ document.body.addEventListener("click", function(event) {
 });
 
 document.getElementById("formInput").addEventListener("keydown", function(event) {
-  console.log(event);
   var input = document.getElementById('formInput');
   if (event.keyCode === 13) {
     // Trigger the button element with a click
@@ -262,3 +257,11 @@ document.getElementById("formInput").addEventListener("keydown", function(event)
     document.getElementById('formRemoveButton').classList.add('fade');
   }
 });
+
+
+allPointsCoords = {
+  lonDeparture: 0,
+  latDeparture: 0,
+  lonArrival: 0,
+  latArrival: 0
+};
