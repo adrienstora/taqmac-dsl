@@ -149,7 +149,8 @@ function onValidResponseDepartureAutocomplete(httpRequest) {
 function onValidResponseArrival(httpRequest) {
     if (httpRequest.status === 200) {
       // var data = httpRequest.responseText;
-      document.getElementById('routeTextVal').innerText += '\nArrivée : "' + httpRequest.responseText + '"';
+      var data = JSON.parse(httpRequest.responseText);
+      document.getElementById('routeTextVal').innerText += '\nArrivée : "' + data[0].label + '"';
     } else {
       document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
     }
