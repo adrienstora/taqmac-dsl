@@ -89,8 +89,7 @@ function getDepartureAutocomplete(adress) {
     
 
 
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('routeText').style.visibility = 'visible';
+    document.getElementById('loader').style.display = 'none';    
 }
   
   function checkResponseValidityDeparture(httpRequest) {
@@ -121,7 +120,6 @@ function checkResponseValidityDepartureAutocomplete(httpRequest) {
         onValidResponseArrival(httpRequest);
       }
     } catch (e) {
-      document.getElementById('routeText').style.visibility = 'visible';
       document.getElementById('routeTextVal').innerText += 'Lieu non trouvé';
       document.getElementById('loader').style.display = 'none';
     }
@@ -136,7 +134,6 @@ function checkResponseValidityDepartureAutocomplete(httpRequest) {
       allPointsCoords.latDeparture = data.lat;
       getArrival();
     } else {
-      document.getElementById('routeText').style.visibility = 'visible';
       document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
     }
 }
@@ -155,7 +152,6 @@ function onValidResponseDepartureAutocomplete(httpRequest) {
       htmlContainer.style.display = "block";
     }
   } else {
-    document.getElementById('routeText').style.visibility = 'visible';
     document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
   }
 }
