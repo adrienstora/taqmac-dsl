@@ -13,14 +13,12 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-@RestController
 public class OpenStreetMapService {
 
     public static final String getBaseURL = "https://nominatim.openstreetmap.org/";
 
 
-    @GetMapping(value = "/map/search/{localisation}")
-    private ResponseEntity<String> search(@PathVariable String localisation) throws IOException {
+    public static ResponseEntity<String> search(String localisation) throws IOException {
 
         ResponseHttpUtils response = HTTPService.call(getBaseURL + "/search/" + localisation + "?format=json", HTTPService.GET);
         String detailLocalisation = response.getResultContent();
@@ -30,11 +28,11 @@ public class OpenStreetMapService {
             return HTTPService.createResponse("", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping(value = "/getArrival")
-    private ResponseEntity<String> getArrival() throws IOException {
-        String arrival = "Altran";
-        return HTTPService.createResponse(arrival,HttpStatus.OK);
-    }
+    // Deprecated
+    // public static ResponseEntity<String> getArrival() throws IOException {
+    //     String arrival = "Altran";
+    //     return HTTPService.createResponse(arrival,HttpStatus.OK);
+    // }
 
 
 
