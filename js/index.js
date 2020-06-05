@@ -34,7 +34,7 @@ function getDepartureAutocomplete(adress) {
   function init() {
 
     var paramDeparture = allPointsCoords.lonDeparture + ',' + allPointsCoords.latDeparture ;
-    var paramArrival = allPointsCoords.lonDeparture + ',' + allPointsCoords.latArrival ; 
+    var paramArrival = allPointsCoords.lonArrival + ',' + allPointsCoords.latArrival ; 
 
     var test = 'https://taqmac-dsl-back.herokuapp.com/car/listPoints/' + paramDeparture + '/' + paramArrival;
 
