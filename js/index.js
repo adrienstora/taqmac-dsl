@@ -36,7 +36,7 @@ function getDepartureAutocomplete(adress) {
     var paramDeparture = allPointsCoords.lonDeparture + ',' + allPointsCoords.latDeparture ;
     var paramArrival = allPointsCoords.lonDeparture + ',' + allPointsCoords.latArrival ; 
 
-    var test = 'http://taqmac-dsl-back.herokuapp.com/car/listPoints/' + paramDeparture + '/' + paramArrival;
+    var test = 'https://taqmac-dsl-back.herokuapp.com/car/listPoints/' + paramDeparture + '/' + paramArrival;
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", test, false ); // false for synchronous request
