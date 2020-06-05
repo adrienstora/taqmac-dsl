@@ -15,12 +15,20 @@ public class OpenRouteServiceService {
     public final String getBaseURL="https://api.openrouteservice.org/v2";
     public final String getKey = "5b3ce3597851110001cf6248c3e0f4ea0c98469b87828a7ec113cc29";
 
-    public static String getUrl(String localisationStart, String localisationEnd, String modeTransport){
+    public static ResponseEntity<String> listPoints(String localisationStart, String localisationEnd, String modeTransport) throws IOException {
         String getBaseURL="https://api.openrouteservice.org/v2";
         String getKey = "5b3ce3597851110001cf6248c3e0f4ea0c98469b87828a7ec113cc29";
-        return getBaseURL + "/directions/"+ modeTransport +"?start=" + localisationStart
-                + "&end=" + localisationEnd + "&api_key=" + getKey;
+        ResponseHttpUtils response = HTTPService.call(getBaseURL + "/directions/driving-car?start=" + localisationStart
+                + "&end=" + localisationEnd + "&api_key=" + getKey, HTTPService.GET);
+        String journeys = response.getResultContent();
+
+        System.out.printf(OpenRouteServiceParser.getJourney(journeys).toString());
+        if (response.getResultCode() == HttpStatus.OK.value())
+            return HTTPService.createResponse(journeys, HttpStatus.OK);
+        else
+            return HTTPService.createResponse("", HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
     @GetMapping(value = "/car/listPoints/{localisationStart}/{localisationEnd}")
     private ResponseEntity<String> listPoints(@PathVariable String localisationStart,
                                               @PathVariable String localisationEnd)

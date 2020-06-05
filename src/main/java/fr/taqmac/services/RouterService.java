@@ -41,41 +41,19 @@ public class RouterService {
     }
 
     // Format : 1.43697,43.5849 par point
-    // FORMAT TransportModeList: métro,bus,tramway,pied,voiture séparé par des virgules dans l'url.
+    // FORMAT TransportModeList: métro,bus,tramway,voiture séparé par des virgules dans l'url.
     @GetMapping(value = "/listPoints/{localisationStart}/{localisationEnd}/{transportModeList}")
     private ResponseEntity<String> listPoints(@PathVariable String localisationStart,
                                               @PathVariable String localisationEnd,
                                               @PathVariable String[] transportModeList)
             throws IOException {
-
-        String url = "";
-        for (String modeTransport :transportModeList ) {
-
-
-            switch (modeTransport) {
-                case "voiture":
-                    modeTransport = "driving-car";
-                    url = OpenRouteServiceService.getUrl(localisationStart,localisationEnd,modeTransport);
-                    break;
-                case "bus":
-                    modeTransport = "bus";
-                    break;
-                case "metro":
-                    modeTransport = "métro";
-                    break;
-                default:
-
-            }
+        if (transportModeList[0].equals("voiture")){
+            String modeTransport = "driving-car";
+            return OpenRouteServiceService.listPoints(localisationStart,localisationEnd,modeTransport);
+        } else {
+            return TisseoApiParserService.listPoints(localisationStart,localisationEnd,transportModeList);
         }
-            ResponseHttpUtils response = HTTPService.call(url, HTTPService.GET);
-            String journeys = response.getResultContent();
 
-            System.out.printf(TisseoParser.getJourneysText(journeys).toString());
-
-            if (response.getResultCode() == HttpStatus.OK.value())
-                return HTTPService.createResponse(journeys, HttpStatus.OK);
-            else
-                return HTTPService.createResponse("", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
