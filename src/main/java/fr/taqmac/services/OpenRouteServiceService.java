@@ -25,7 +25,7 @@ public class OpenRouteServiceService {
 
         System.out.printf(OpenRouteServiceParser.getJourney(journeys).toString());
         if (response.getResultCode() == HttpStatus.OK.value())
-            return HTTPService.createResponse(journeys, HttpStatus.OK);
+            return HTTPService.createResponse(OpenRouteServiceParser.getJourney(journeys).toString(), HttpStatus.OK);
         else
             return HTTPService.createResponse("", HttpStatus.INTERNAL_SERVER_ERROR);
     }
