@@ -32,7 +32,19 @@ function getDepartureAutocomplete(adress) {
 }
   
   function init() {
-  
+
+    var paramDeparture = allPointsCoords.lonDeparture + ',' + allPointsCoords.latDeparture ;
+    var paramArrival = allPointsCoords.lonDeparture + ',' + allPointsCoords.latArrival ; 
+
+    var test = 'http://taqmac-dsl-back.herokuapp.com/car/listPoints/' + paramDeparture + '/' + paramArrival;
+
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", test, false ); // false for synchronous request
+    xmlHttp.send( null );
+    var res = JSON.parse(xmlHttp.responseText);
+
+    var points = res['features'][0]['geometry']['coordinates'];
+
     if (document.getElementById('basicMap').innerHTML !== '') {
       document.getElementById('basicMap').innerHTML = '';
     }
@@ -48,15 +60,6 @@ function getDepartureAutocomplete(adress) {
     });
 
 
-    var vector = new ol.layer.Vector({
-      source: new ol.source.Vector({
-        url: '/gpx.gpx',
-        format: new ol.format.GPX()
-      }),
-      style: function(feature) {
-        return style[feature.getGeometry().getType()];
-      }
-    });
 
 
     // eslint-disable-next-line no-unused-vars
@@ -91,8 +94,7 @@ function getDepartureAutocomplete(adress) {
               src: 'https://openlayers.org/en/latest/examples/data/icon.png'
             })
           })
-        }),
-        vector
+        })
       ],
       view: new ol.View({
         center: ol.proj.fromLonLat([allPointsCoords.lonDeparture,allPointsCoords.latDeparture]),
@@ -100,6 +102,31 @@ function getDepartureAutocomplete(adress) {
       })
     });
     
+    for (var i = 0; i < points.length; i++) {
+
+      var point = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([points[i][0],points[i][1]])),
+        name: 'new point',
+      });
+
+
+      var pointLayer =  new ol.layer.Vector({
+        source: new ol.source.Vector({
+          features: [point]
+        }),
+        style: new ol.style.Style({
+          image: new ol.style.Icon({
+            anchor: [0.5, 0,5],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'fraction',
+            src: '/redCircle.png'
+          })
+        })
+      })
+
+
+      map.addLayer(pointLayer);
+    }
 
 
     document.getElementById('loader').style.display = 'none';    
