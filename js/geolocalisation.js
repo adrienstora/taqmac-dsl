@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // eslint-disable-next-line no-unused-vars
 function getDeparture(adress) {
-
+    // DEPRECATED
     var action = 'GET';
     var url = 'https://taqmac-dsl-back.herokuapp.com/map/search/';
     // var url = "https://nominatim.openstreetmap.org/search/' + adress + '?format=json";
