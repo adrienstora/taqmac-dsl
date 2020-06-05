@@ -28,19 +28,4 @@ public class OpenRouteServiceService {
         else
             return HTTPService.createResponse("", HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-    @GetMapping(value = "/car/listPoints/{localisationStart}/{localisationEnd}")
-    private ResponseEntity<String> listPoints(@PathVariable String localisationStart,
-                                              @PathVariable String localisationEnd)
-            throws IOException {
-        ResponseHttpUtils response = HTTPService.call(getBaseURL + "/directions/driving-car?start=" + localisationStart
-                + "&end=" + localisationEnd + "&api_key=" + getKey, HTTPService.GET);
-        String journeys = response.getResultContent();
-
-        System.out.printf(OpenRouteServiceParser.getJourney(journeys).toString());
-        if (response.getResultCode() == HttpStatus.OK.value())
-            return HTTPService.createResponse(journeys, HttpStatus.OK);
-        else
-            return HTTPService.createResponse("", HttpStatus.INTERNAL_SERVER_ERROR);
-    }
 }
