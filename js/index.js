@@ -50,7 +50,7 @@ function getArrival() {
     var paramDeparture = allPointsCoords.lonDeparture + ',' + allPointsCoords.latDeparture ;
     var paramArrival = allPointsCoords.lonArrival + ',' + allPointsCoords.latArrival ; 
 
-    var test = 'https://taqmac-dsl-back.herokuapp.com/car/listPoints/' + paramDeparture + '/' + paramArrival;
+    var test = 'https://taqmac-dsl-back.herokuapp.com/listPoints/' + paramDeparture + '/' + paramArrival + '/voiture';
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", test, false ); // false for synchronous request
@@ -89,10 +89,10 @@ function getArrival() {
           }),
           style: new ol.style.Style({
             image: new ol.style.Icon({
-              anchor: [0.5, 46],
+              anchor: [0.5, 35],
               anchorXUnits: 'fraction',
               anchorYUnits: 'pixels',
-              src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+              src: '/departure1.png'
             })
           })
         }),
@@ -102,10 +102,10 @@ function getArrival() {
           }),
           style: new ol.style.Style({
             image: new ol.style.Icon({
-              anchor: [0.5, 46],
+              anchor: [0.5, 35],
               anchorXUnits: 'fraction',
               anchorYUnits: 'pixels',
-              src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+              src: '/arrival1.png'
             })
           })
         })
@@ -115,6 +115,9 @@ function getArrival() {
         zoom: 15
       })
     });
+
+
+
     
     for (var i = 0; i < points.length; i++) {
 
