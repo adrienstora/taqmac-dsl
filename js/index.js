@@ -24,7 +24,7 @@ function getDepartureAutocomplete(adress) {
 
 function getTransportList() {
     var liste = [];
-    document.getElementById("transportationListContainer").querySelectorAll("input").forEach(fucntion (e){
+    document.getElementById("transportationListContainer").querySelectorAll("input").forEach(function (e){
         if (e.checked) {
             liste.push(e.value);
         }
