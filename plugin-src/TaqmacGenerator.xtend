@@ -85,7 +85,7 @@ class TaqmacGenerator extends AbstractGenerator {
 	}
 	
 	def generateDateField(PlageHoraire plage){
-		var html += "<label for='timeSlotInput'> Veuillez saisir une heure de d�part</label>";
+		var html = "<label for='timeSlotInput'> Veuillez saisir une heure de d�part</label>";
 		html += "<input type='time' "+
 					"name='timeSlotInput' "+
 					"id='timeSlotInput' "+
