@@ -54529,9 +54529,7 @@ video {
 
 #formForm {
   flex: 1;
-  align-self: center;
   line-height: 0;
-  width: 35vw;
 }
 
 #route{
@@ -54545,6 +54543,7 @@ video {
 #formInputContainer {
   background-color: white;
   border-radius: 30px;
+  flex: 2;
 }
 
 #formSendButton {
@@ -54663,7 +54662,8 @@ video {
 #autocompleteList {
   background-color: #fff;
   position: absolute;
-  top: 25vh;
+  top: 29vh;
+  left: 53vw;
   max-height: 500px;
   z-index: 1;
   max-width: 600px;
@@ -54680,4 +54680,24 @@ video {
 .elem:hover {
   background-color: lightblue;
   cursor: pointer;
+}
+
+#transportationListContainer {
+  margin: 10px;
+  flex: 1;
+}
+
+#timeSlotsContainer {
+  margin: 10px;
+  line-height: initial;
+  flex: 1;
+}
+
+#formOptions {
+  display: flex;
+  justify-content: space-around;
+}
+
+#transportationListContainer input{
+  margin: 6px;
 }
