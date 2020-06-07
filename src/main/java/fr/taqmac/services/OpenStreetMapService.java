@@ -32,7 +32,7 @@ public class OpenStreetMapService {
     public static ResponseEntity<String> getArrival() throws IOException {
 
         String adress = "17 Avenue Didier Daurat, Blagnac, France";
-        ResponseEntity<String> arrival = autocomplete(adress);
+        ResponseEntity<String> arrival = OpenRouteService.autocomplete(adress);
         System.out.println(arrival.getBody());
         return HTTPService.createResponse(arrival.getBody(),HttpStatus.OK);
     }
