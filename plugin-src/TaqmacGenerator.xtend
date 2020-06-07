@@ -41,6 +41,8 @@ class TaqmacGenerator extends AbstractGenerator {
 		var listCheckbox = "";
 		var str = "";
 		'''
+		/* eslint-disable no-undef */
+		// eslint-disable-next-line no-unused-vars
 		function setCheckboxList(){
 			�for (trans : list) {
 				str += "<label for='"+trans.getType().toLowerCase()+"'>"+trans.getType()+"</label>";
@@ -73,6 +75,8 @@ class TaqmacGenerator extends AbstractGenerator {
 		}
 		
 		'''
+		/* eslint-disable no-undef */
+		// eslint-disable-next-line no-unused-vars
 		function createSelectDisplayMode(){
 			�html�
 		}
@@ -89,6 +93,8 @@ class TaqmacGenerator extends AbstractGenerator {
 					"max='"+plage.fin+"' "+
 					 "required> ";
 		'''
+		/* eslint-disable no-undef */
+		// eslint-disable-next-line no-unused-vars
 		function createTimeSlots(){	 
 			document.getElementById("timeSlotsContainer").innerHTML = "�html�";
 		}
