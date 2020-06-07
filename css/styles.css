@@ -1,7 +1,16 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
+#transportationListContainer {
+    margin: 10px;
+}
 
+#timeSlotsContainer {
+    margin: 10px;
+    line-height: initial;
+}
 
+#formOptions {
+    display: flex;
+    justify-content: space-around;
+}

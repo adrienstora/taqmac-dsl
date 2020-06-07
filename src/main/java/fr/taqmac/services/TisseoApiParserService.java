@@ -14,16 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
-@RestController
 public class TisseoApiParserService {
 
 	public static final String getBaseURL = "https://api.tisseo.fr/v1";
 	public static final String getKey = "6c4a04f8-06db-405e-a5fd-58c89937b44f";
 
 
-	@GetMapping(value = "/tisseo/search/{localisation}")
-	private ResponseEntity<String> search(@PathVariable String localisation) throws IOException {
+	public static ResponseEntity<String> search( String localisation) throws IOException {
 
 		ResponseHttpUtils response = HTTPService.call(getBaseURL + "/places.json?term=" + localisation + "&key=" + getKey, HTTPService.GET);
 		String detailLocalisation = response.getResultContent();
@@ -35,10 +32,9 @@ public class TisseoApiParserService {
 
 	// Format : 1.43697,43.5849 par point
 	// FORMAT TransportModeList: métro,bus,tramway séparé par des virgules dans l'url.
-	@GetMapping(value = "/tisseo/listPoints/{localisationStart}/{localisationEnd}/{transportModeList}")
-	private ResponseEntity<String> listPoints(@PathVariable String localisationStart,
-											  @PathVariable String localisationEnd,
-											  @PathVariable String[] transportModeList)
+	public static ResponseEntity<String> listPoints(String localisationStart,
+													String localisationEnd,
+											  		String[] transportModeList)
 			throws IOException {
 
 		String rollingStocksURL = getBaseURL + "/rolling_stocks.json";
