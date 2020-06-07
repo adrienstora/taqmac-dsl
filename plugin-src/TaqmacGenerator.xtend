@@ -28,9 +28,9 @@ class TaqmacGenerator extends AbstractGenerator {
 	
 	def generateJavascript(Itineraire itineraire){
 		'''
-		�generateTransportListCheckBox(itineraire.modesTransport)�
-		�generateSelectMode(itineraire.modesAffichage)�
-		�generateDateField(itineraire.plageHoraire)�
+		«generateTransportListCheckBox(itineraire.modesTransport)»
+		«generateSelectMode(itineraire.modesAffichage)»
+		«generateDateField(itineraire.plageHoraire)»
 		'''
 		
 	}
@@ -44,12 +44,12 @@ class TaqmacGenerator extends AbstractGenerator {
 		/* eslint-disable no-undef */
 		// eslint-disable-next-line no-unused-vars
 		function setCheckboxList(){
-			�for (trans : list) {
+			«for (trans : list) {
 				str += "<label for='"+trans.getType().toLowerCase()+"'>"+trans.getType()+"</label>";
 				str += "<input type='checkbox' name='"+trans.getType().toLowerCase()+"' value='"+trans.getType().toLowerCase()+"' id='"+trans.getType().toLowerCase()+"'/>"; 	
 				listCheckbox += str;
-			}�
- 			document.getElementById("transportationListContainer").innerHTML = "�listCheckbox�";
+			}»
+ 			document.getElementById("transportationListContainer").innerHTML = "«listCheckbox»";
 		}
 		setCheckboxList();
 		'''
@@ -78,14 +78,14 @@ class TaqmacGenerator extends AbstractGenerator {
 		/* eslint-disable no-undef */
 		// eslint-disable-next-line no-unused-vars
 		function createSelectDisplayMode(){
-			�html�
+			«html»
 		}
 		createSelectDisplayMode();
 		'''
 	}
 	
 	def generateDateField(PlageHoraire plage){
-		var html = "<label for='timeSlotInput'> Veuillez saisir une heure de d�part</label>";
+		var html = "<label for='timeSlotInput'> Veuillez saisir une heure de départ</label>";
 		html += "<input type='time' "+
 					"name='timeSlotInput' "+
 					"id='timeSlotInput' "+
@@ -96,7 +96,7 @@ class TaqmacGenerator extends AbstractGenerator {
 		/* eslint-disable no-undef */
 		// eslint-disable-next-line no-unused-vars
 		function createTimeSlots(){	 
-			document.getElementById("timeSlotsContainer").innerHTML = "�html�";
+			document.getElementById("timeSlotsContainer").innerHTML = "«html»";
 		}
 		createTimeSlots();
 		'''
