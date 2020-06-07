@@ -9,7 +9,7 @@ function getDeparture(adress) {
     var onResponseReturn = checkResponseValidityDeparture;
     doHttpRequest(action, url, params, onResponseReturn);
 }
-
+  
 /* eslint-disable no-undef */
 // eslint-disable-next-line no-unused-vars
 function getDepartureAutocomplete(adress) {
@@ -22,96 +22,33 @@ function getDepartureAutocomplete(adress) {
   doHttpRequest(action, url, params, onResponseReturn);
 }
 
-function getTransportList() {
-    var liste = [];
-    document.getElementById("transportationListContainer").querySelectorAll("input").forEach(function (e){
-        if (e.checked) {
-            liste.push(e.value);
-        }
-    });
-    return liste;
-}
+// function getTransportList() {
+//     var liste = [];
+//     document.getElementById("transportationListContainer").querySelectorAll("input").forEach(function (e){
+//         if (e.checked) {
+//             liste.push(e.value);
+//         }
+//     });
+//     return liste;
+// }
 
-function getStartTime() {
-    return document.getElementById("timeSlotsContainer").querySelector("input").value;
-}
+// function getStartTime() {
+//     return document.getElementById("timeSlotsContainer").querySelector("input").value;
+// }
 
-  function getArrival() {
+function getArrival() {
+  
     var action = 'GET';
     var url = 'https://taqmac-dsl-back.herokuapp.com/getArrival';
     var params = null;
     var onResponseReturn = checkResponseValidityArrival;
     doHttpRequest(action, url, params, onResponseReturn);
 }
-
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-// eslint-disable-next-line no-undef
-function showForm() {
-
-    var input = document.getElementById('formInput');
-
-    input.onkeyup = function(event) {
-        if (event.keyCode === 13) {
-            // Trigger the button element with a click
-            document.getElementById('formSendButton').click();
-        }
-
-        if (input.value !== '') {
-            document.getElementById('formRemoveButton').classList.remove('fade');
-        } else {
-            document.getElementById('formRemoveButton').classList.add('fade');
-        }
-
-    };
-
-    document.getElementById('formRemoveButton').onclick = function() {
-        input.value = '';
-        document.getElementById('formRemoveButton').classList.add('fade');
-    };
-
-    document.getElementById('formSendButton').onclick = function() {
-        var inputVal = input.value;
-
-        if (inputVal.trim() !== '') {
-            input.value = '';
-            document.getElementById('formRemoveButton').classList.add('fade');
-            console.log(inputVal);
-            document.getElementById('routeTextVal').textContent = '';
-            document.getElementById('loader').style.display = 'block';
-            document.getElementById('basicMap').style.display = 'none';
-            getDeparture(inputVal, getTransportList(), getStartTime());
-        }
-    };
-
-    document.body.addEventListener("click", function(event) {
-        mainFunction(event);
-    });
-
-    document.getElementById("formInput").addEventListener("keydown", function(event) {
-        var input = document.getElementById('formInput');
-        if (event.keyCode === 13) {
-            // Trigger the button element with a click
-            document.getElementById('formSendButton').click();
-        } else {
-            if(input.value.length > 1) {
-                document.getElementById("autocompleteList").style.display = "none";
-                getDepartureAutocomplete(input.value);
-            }
-        }
-        input = document.getElementById('formInput');
-        if (input.value !== '') {
-            document.getElementById('formRemoveButton').classList.remove('fade');
-        } else {
-            document.getElementById('formRemoveButton').classList.add('fade');
-        }
-    });
-}
-
+  
   function init() {
 
     var paramDeparture = allPointsCoords.lonDeparture + ',' + allPointsCoords.latDeparture ;
-    var paramArrival = allPointsCoords.lonArrival + ',' + allPointsCoords.latArrival ;
+    var paramArrival = allPointsCoords.lonArrival + ',' + allPointsCoords.latArrival ; 
 
     var test = 'https://taqmac-dsl-back.herokuapp.com/car/listPoints/' + paramDeparture + '/' + paramArrival;
 
@@ -123,14 +60,14 @@ function showForm() {
     var points = res['features'][0]['geometry']['coordinates'];
 
     if (document.getElementById('basicMap').innerHTML !== '') {
-        document.getElementById('basicMap').innerHTML = '';
+      document.getElementById('basicMap').innerHTML = '';
     }
-
+  
     var iconDeparture = new ol.Feature({
       geometry: new ol.geom.Point(ol.proj.fromLonLat([allPointsCoords.lonDeparture,allPointsCoords.latDeparture])),
       name: 'Somewhere near Nottingham',
     });
-
+    
     var iconArrival = new ol.Feature({
       geometry: new ol.geom.Point(ol.proj.fromLonLat([allPointsCoords.lonArrival,allPointsCoords.latArrival])),
       name: 'Somewhere near Nottingham',
@@ -178,7 +115,7 @@ function showForm() {
         zoom: 15
       })
     });
-
+    
     for (var i = 0; i < points.length; i++) {
 
       var point = new ol.Feature({
@@ -206,14 +143,14 @@ function showForm() {
     }
 
 
-    document.getElementById('loader').style.display = 'none';
+    document.getElementById('loader').style.display = 'none';    
 }
-
-function checkResponseValidityDeparture(httpRequest) {
+  
+  function checkResponseValidityDeparture(httpRequest) {
     try {
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            onValidResponseDeparture(httpRequest);
-        }
+      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        onValidResponseDeparture(httpRequest);
+      }
     } catch (e) {
       document.getElementById('routeTextVal').innerText = 'Lieu non trouvé';
       document.getElementById('loader').style.display = 'none';
@@ -230,19 +167,19 @@ function checkResponseValidityDepartureAutocomplete(httpRequest) {
     document.getElementById('loader').style.display = 'none';
   }
 }
-
+  
   function checkResponseValidityArrival(httpRequest) {
     try {
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            onValidResponseArrival(httpRequest);
-        }
+      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        onValidResponseArrival(httpRequest);
+      }
     } catch (e) {
       document.getElementById('routeTextVal').innerText += 'Lieu non trouvé';
       document.getElementById('loader').style.display = 'none';
     }
 }
-
-function onValidResponseDeparture(httpRequest) {
+  
+  function onValidResponseDeparture(httpRequest) {
     if (httpRequest.status === 200) {
       var data = JSON.parse(httpRequest.responseText)[0];
       document.getElementById('routeTextVal').innerText = 'Départ : "' + data.display_name;
@@ -251,10 +188,10 @@ function onValidResponseDeparture(httpRequest) {
       allPointsCoords.latDeparture = data.lat;
       getArrival();
     } else {
-        document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
+      document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
     }
 }
-
+  
 function onValidResponseDepartureAutocomplete(httpRequest) {
   if (httpRequest.status === 200) {
     var data = JSON.parse(httpRequest.responseText);
@@ -282,30 +219,30 @@ function onValidResponseArrival(httpRequest) {
       document.getElementById('routeTextVal').innerText += '\nArrivée : "' + data[0].label + '"';
       init();
     } else {
-        document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
+      document.getElementById('routeTextVal').innerText = 'Il y a eu un problème avec la requête.';
     }
 }
+  
 
-
-// eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars
 function doHttpRequest(action, url, params, onResponseReturn) {
 
     params = (params === null || params === undefined ? '' : params);
-
+  
     // eslint-disable-next-line no-undef
     var httpRequest = new XMLHttpRequest();
-
+  
     if (!httpRequest) {
-        // eslint-disable-next-line no-undef
-        alert('Abandon :( Impossible de créer une instance de XMLHTTP');
-        return false;
+      // eslint-disable-next-line no-undef
+      alert('Abandon :( Impossible de créer une instance de XMLHTTP');
+      return false;
     }
     httpRequest.onreadystatechange = callback;
     httpRequest.open(action, url + params);
     httpRequest.send();
-
+  
     function callback() {
-        onResponseReturn(httpRequest);
+      onResponseReturn(httpRequest);
     }
 }
 
@@ -342,9 +279,33 @@ function mainFunction(event) {
     document.getElementById('basicMap').style.display = 'block';
     document.getElementById("autocompleteList").style.display = "none";
     getArrival();
-
+    
   }
 }
+
+document.body.addEventListener("click", function(event) {
+  mainFunction(event);
+});
+
+document.getElementById("formInput").addEventListener("keydown", function(event) {
+  var input = document.getElementById('formInput');
+  if (event.keyCode === 13) {
+    // Trigger the button element with a click
+    document.getElementById('formSendButton').click();
+  } else {
+    if(input.value.length > 1) {
+      document.getElementById("autocompleteList").style.display = "none";
+      getDepartureAutocomplete(input.value);
+    }
+  }
+  input = document.getElementById('formInput');
+  if (input.value !== '') {
+    document.getElementById('formRemoveButton').classList.remove('fade');
+  } else {
+    document.getElementById('formRemoveButton').classList.add('fade');
+  }
+});
+
 
 allPointsCoords = {
   lonDeparture: 0,
