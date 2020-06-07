@@ -83,6 +83,29 @@ function showForm() {
             getDeparture(inputVal, getTransportList(), getStartTime());
         }
     };
+
+    document.body.addEventListener("click", function(event) {
+        mainFunction(event);
+    });
+
+    document.getElementById("formInput").addEventListener("keydown", function(event) {
+        var input = document.getElementById('formInput');
+        if (event.keyCode === 13) {
+            // Trigger the button element with a click
+            document.getElementById('formSendButton').click();
+        } else {
+            if(input.value.length > 1) {
+                document.getElementById("autocompleteList").style.display = "none";
+                getDepartureAutocomplete(input.value);
+            }
+        }
+        input = document.getElementById('formInput');
+        if (input.value !== '') {
+            document.getElementById('formRemoveButton').classList.remove('fade');
+        } else {
+            document.getElementById('formRemoveButton').classList.add('fade');
+        }
+    });
 }
 
   function init() {
@@ -322,30 +345,6 @@ function mainFunction(event) {
 
   }
 }
-
-document.body.addEventListener("click", function(event) {
-  mainFunction(event);
-});
-
-document.getElementById("formInput").addEventListener("keydown", function(event) {
-  var input = document.getElementById('formInput');
-  if (event.keyCode === 13) {
-    // Trigger the button element with a click
-    document.getElementById('formSendButton').click();
-  } else {
-    if(input.value.length > 1) {
-      document.getElementById("autocompleteList").style.display = "none";
-      getDepartureAutocomplete(input.value);
-    }
-  }
-  input = document.getElementById('formInput');
-  if (input.value !== '') {
-    document.getElementById('formRemoveButton').classList.remove('fade');
-  } else {
-    document.getElementById('formRemoveButton').classList.add('fade');
-  }
-});
-
 
 allPointsCoords = {
   lonDeparture: 0,
